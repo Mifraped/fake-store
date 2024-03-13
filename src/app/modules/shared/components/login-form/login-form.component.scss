@@ -1,0 +1,44 @@
+// div.container{
+//   height: 400px;
+//   width: 350px;
+//   background-color: rgb(235, 190, 13);
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   border-radius: 5px;
+// }
+.formCont {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .example-card {
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: #bebebe;
+  }
+
+  mat-card-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+  }
+
+  mat-card-actions{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+  }
+
+  mat-form-field{
+    width: 250px;
+  }
+
+  // button{
+  //   align-self: center;
+  // }

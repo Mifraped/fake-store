@@ -1,0 +1,62 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+  mat-toolbar{
+    background-color: #FFCC00;
+    color: black;
+    height: 7%;
+  }
+  .example-container {
+    position: absolute;
+    top: 7%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #eee;
+    height: 93%;
+  }
+  .custom-icon-button, .menu{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border: none;
+    padding: 0;
+    background: none;
+    box-shadow: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  .menu{
+    width: 48px;
+    height: 48px;
+  }
+  
+  .menu:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .user-links{
+    display: flex;
+  }
+
+  div.login, div.shoping-cart{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 24px;
+    cursor: pointer;
+    padding: 5px 15px;
+    gap: 5px;
+  }
+
+  div.login:hover, div.shoping-cart:hover{
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  mat-sidenav-content{
+    background-color: #5b5b5b;
+  }
