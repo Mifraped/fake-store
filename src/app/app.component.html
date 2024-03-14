@@ -4,14 +4,14 @@
   </button>
   <span>Fake Store</span>
   <span class="example-spacer"></span>
-  <div class="user-links" (click)="navigateToLogin();sidenav.close()">
+  <div class="user-links" (click)="loginLogout();sidenav.close()">
     <div class="login">
       <span>
-        Login
+        {{token ? "Logout" : "Login"}}
       </span>
       <button class="custom-icon-button" aria-label="Example icon-button with heart icon">
         <span class="material-symbols-outlined">
-          login
+          {{token ? "logout" : "login"}}
         </span>
       </button>
     </div>
@@ -71,7 +71,7 @@
         </button>
       </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item routerLink="orders" (click)="sidenav.toggle()">
+      <mat-list-item *ngIf="token" routerLink="orders" (click)="sidenav.toggle()">
         <a matListItemTitle>Mis Pedidos</a>
         <button class="custom-icon-button" matListItemMeta>
           <span class="material-symbols-outlined">
@@ -79,7 +79,7 @@
           </span>
         </button>
       </mat-list-item>
-      <mat-list-item routerLink="profile" (click)="sidenav.toggle()">
+      <mat-list-item *ngIf="token" routerLink="profile" (click)="sidenav.toggle()">
         <a matListItemTitle>Mi Perfil</a>
         <button class="custom-icon-button" matListItemMeta>
           <span class="material-symbols-outlined">
@@ -87,11 +87,11 @@
           </span>
         </button>
       </mat-list-item>
-      <mat-list-item routerLink="home" (click)="sidenav.toggle()">
-        <a matListItemTitle>Cerrar Sesion</a>
+      <mat-list-item routerLink="home" (click)="sidenav.toggle(); loginLogout()">
+        <a matListItemTitle>{{token ? 'Cerrar Sesion' : 'Iniciar sesión'}}</a>
         <button class="custom-icon-button" matListItemMeta>
           <span class="material-symbols-outlined">
-            logout
+            {{token ? 'logout' : 'login'}}
           </span>
         </button>
       </mat-list-item>

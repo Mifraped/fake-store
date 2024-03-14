@@ -32,6 +32,7 @@ export class LoginPageComponent {
         if(res.token){
           sessionStorage.setItem('token', res.token)
           this._router.navigate(['home'])
+          this._loginService.updateLoginStatus()
         }
       }),
       error: ((error: any) => {

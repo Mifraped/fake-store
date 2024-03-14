@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { FormGroup } from '@angular/forms';
-import { Observable, catchError, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, catchError, throwError } from 'rxjs';
 import { User } from 'src/app/modules/shared/models/user.type';
 import { Token } from '../models/token.type';
 
@@ -10,7 +9,12 @@ import { Token } from '../models/token.type';
 })
 export class LoginService {
 
+  private _loginStatus = new Subject<boolean>
+
+  public shareLoginStatus = this._loginStatus.asObservable()
+
   constructor(private _http: HttpClient) { }
+
 
   private handleError(error: HttpErrorResponse){
     if(error.status === 0){
@@ -25,5 +29,9 @@ export class LoginService {
     return this._http.post<Token>("https://fakestoreapi.com/auth/login", user).pipe(
       catchError(this.handleError)
     )
+  }
+
+  updateLoginStatus(){
+    this._loginStatus.next(true)
   }
 }
