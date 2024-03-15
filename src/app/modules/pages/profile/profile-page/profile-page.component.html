@@ -1,1 +1,53 @@
-<p>profile-page works!</p>
+<div class="contPrin">
+    <div class="contTarg">
+        <h1>Perfil</h1>
+        <mat-card class="example-card">
+            <mat-card-header>
+                <mat-card-title>Datos de Usuario:</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-list role="list">
+                    <div class="profileItem">
+                        <label for="">Nombre de usuario</label>
+                        <input [(ngModel)]="logedUser.username">
+                    </div>
+                    <div class="profileItem">
+                        <label for="">Correo Electrónico</label>
+                        <input [(ngModel)]="logedUser.email">
+                    </div>
+                    <div class="profileItem">
+                        <label for="">Password</label>
+                        <input type="password" [(ngModel)]="logedUser.password">
+                    </div>
+                </mat-list>
+                <button mat-raised-button color="primary" (click)="enviarCambios(logedUser)">Guardar</button>
+            </mat-card-content>
+        </mat-card>
+        <mat-card class="example-card">
+            <mat-card-header>
+                <mat-card-title>Direccion:</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-list role="list">
+                    <div class="profileItem">
+                        <label for="">Calle</label>
+                        <input [(ngModel)]="logedUser.address.street">
+                    </div>
+                    <div class="profileItem">
+                        <label for="">Numero</label>
+                        <input [(ngModel)]="logedUser.address.number">
+                    </div>
+                    <div class="profileItem">
+                        <label for="">Codigo postal</label>
+                        <input [(ngModel)]="logedUser.address.zipcode">
+                    </div>
+                    <div class="profileItem">
+                        <label for="">Ciudad</label>
+                        <input [(ngModel)]="logedUser.address.city">
+                    </div>
+                </mat-list>
+                <button mat-raised-button color="primary" (click)="enviarCambios(logedUser)">Guardar</button>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

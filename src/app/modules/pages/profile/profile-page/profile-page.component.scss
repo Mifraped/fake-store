@@ -1,0 +1,54 @@
+.contPrin{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+.contTarg{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: 60%;
+    padding: 5%;
+}
+
+h1{
+    font-size: 2.5rem;
+}
+
+mat-card{
+    background-color: var(--grisClaro);
+    position: relative;
+}
+
+.profileItem{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    padding: 25px 40px;
+    font-size: 1rem;
+}
+
+label{
+    width: 15%;
+    font-weight: 500;
+}
+
+input{
+    height: 30px;
+    border-radius: 10px;
+    border: 1px black solid;
+    padding: 15px 10px;
+}
+
+input:focus{
+    outline: none;
+}
+
+button{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}

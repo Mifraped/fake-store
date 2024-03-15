@@ -4,7 +4,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { MaterialModule } from '../material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
-
+import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -16,6 +16,7 @@ import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
   exports: [
     LoginFormComponent

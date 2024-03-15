@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ProgressBarMode } from '@angular/material/progress-bar';
+import { Observable, Subscription } from 'rxjs';
 import { User } from 'src/app/modules/shared/models/user.type';
 
 @Component({
@@ -11,6 +12,10 @@ import { User } from 'src/app/modules/shared/models/user.type';
 export class LoginFormComponent {
 
   @Output() formEvent = new EventEmitter<User>()
+
+  @Input() loginFormReset$!: Observable<boolean>
+
+  resetSubscription!: Subscription
 
   progressBarMode: ProgressBarMode = "determinate"
 
@@ -28,12 +33,25 @@ export class LoginFormComponent {
       username: ['', Validators.required],
       password: ['', Validators.required]
     })
+
+    this.resetSubscription = this.loginFormReset$.subscribe({
+      next: ((value: boolean) => {
+        this.loginForm.reset()
+        this.progressBarMode = 'determinate'
+      })
+    })
   }
 
   submitForm(){
-    let user: User = this.loginForm.value
-    this.formEvent.emit(user)
+    let loginUser: User = this.loginForm.value
+    this.formEvent.emit(loginUser)
     this.progressBarMode = "indeterminate"
+  }
+
+  ngOnDestroy(){
+    if(this.resetSubscription){
+      this.resetSubscription.unsubscribe()
+    }
   }
 
 }

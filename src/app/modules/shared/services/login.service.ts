@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { BehaviorSubject, Observable, Subject, catchError, throwError } from 'rxjs';
+import {  Observable, Subject, catchError, map, throwError } from 'rxjs';
 import { User } from 'src/app/modules/shared/models/user.type';
+import { APIUser } from 'src/app/modules/shared/models/apiUser.type';
 import { Token } from '../models/token.type';
 
 @Injectable({
@@ -22,7 +23,7 @@ export class LoginService {
     }else{
       console.log(`Error en el servidor: ${error.status} ${error.error}`);
     }
-    return throwError(() => new Error(error.error))
+    return throwError(() => error.error)
   }
 
   public login(user: User): Observable<Token>{
@@ -33,5 +34,20 @@ export class LoginService {
 
   updateLoginStatus(){
     this._loginStatus.next(true)
+  }
+
+  getUser(loginUser: User): Observable<APIUser> {
+    return this._http.get<APIUser[]>("https://fakestoreapi.com/users").pipe(
+      map((users: APIUser[]) => {
+        const foundUser = users.find((userInUsers: APIUser) => 
+          userInUsers.username === loginUser.username && userInUsers.password === loginUser.password
+        );
+        if (!foundUser) {
+          throw new Error('User not found');
+        }
+        return foundUser;
+      }),
+      catchError(error => throwError(() => error))
+    );
   }
 }
