@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { APIUser } from 'src/app/modules/shared/models/apiUser.type';
+import { Subscription } from 'rxjs';
+import { APIUser } from 'src/app/modules/shared/models/apiUser.interface';
+import { LoginService } from 'src/app/modules/shared/services/login.service';
 import { UserService } from 'src/app/modules/shared/services/user.service';
 
 @Component({
@@ -11,7 +13,7 @@ export class ProfilePageComponent {
 
   logedUser!: APIUser 
 
-  constructor(private _userService: UserService){
+  constructor(private _userService: UserService, private _loginService: LoginService){
 
   }
 
@@ -25,7 +27,10 @@ export class ProfilePageComponent {
 
   enviarCambios(user: APIUser){
     this._userService.updateUser(user).subscribe({
-      next: ((res: APIUser) => sessionStorage.setItem('logedUser', JSON.stringify(res))),
+      next: ((res: APIUser) => {
+        sessionStorage.setItem('logedUser', JSON.stringify(res))
+        this._loginService.updateLoginStatus()
+      }),
       error: ((error: any) => console.error(`No se han podido realizar los cambios: ${error}`)),
       complete: () => console.log(`Proceso finalizado correctamente`)
     })

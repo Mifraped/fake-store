@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ProgressBarMode } from '@angular/material/progress-bar';
 import { Observable, Subscription } from 'rxjs';
-import { User } from 'src/app/modules/shared/models/user.type';
+import { User } from 'src/app/modules/shared/models/user.interface';
 
 @Component({
   selector: 'app-login-form',

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from './modules/shared/services/login.service';
-import { APIUser } from './modules/shared/models/apiUser.type';
+import { APIUser } from './modules/shared/models/apiUser.interface';
 
 @Component({
   selector: 'app-root',

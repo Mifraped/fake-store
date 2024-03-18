@@ -1,11 +1,11 @@
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Token } from '../../../shared/models/token.type';
+import { Token } from '../../../shared/models/token.interface';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from 'src/app/modules/shared/models/user.type';
+import { User } from 'src/app/modules/shared/models/user.interface';
 import { LoginService } from 'src/app/modules/shared/services/login.service';
-import { Subject, Subscription, switchMap } from 'rxjs';
-import { APIUser } from 'src/app/modules/shared/models/apiUser.type';
+import { Subject, Subscription, switchMap, throwError } from 'rxjs';
+import { APIUser } from 'src/app/modules/shared/models/apiUser.interface';
 
 @Component({
   selector: 'app-login-page',
@@ -40,7 +40,7 @@ export class LoginPageComponent {
           sessionStorage.setItem('token', res.token)
           return this._loginService.getUser(loginUser)
         }else{
-          throw new Error('No token')
+          return throwError(() =>new Error('No token'))
         }
       })
     ).subscribe({

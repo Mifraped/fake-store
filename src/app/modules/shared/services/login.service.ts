@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import {  Observable, Subject, catchError, map, throwError } from 'rxjs';
-import { User } from 'src/app/modules/shared/models/user.type';
-import { APIUser } from 'src/app/modules/shared/models/apiUser.type';
-import { Token } from '../models/token.type';
+import { User } from 'src/app/modules/shared/models/user.interface';
+import { APIUser } from 'src/app/modules/shared/models/apiUser.interface';
+import { Token } from '../models/token.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +23,7 @@ export class LoginService {
     }else{
       console.log(`Error en el servidor: ${error.status} ${error.error}`);
     }
-    return throwError(() => error.error)
+    return throwError(() => new Error(error.error))
   }
 
   public login(user: User): Observable<Token>{

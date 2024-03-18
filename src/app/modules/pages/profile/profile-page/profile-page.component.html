@@ -8,6 +8,18 @@
             <mat-card-content>
                 <mat-list role="list">
                     <div class="profileItem">
+                        <label for="">Nombre</label>
+                        <input [(ngModel)]="logedUser.name.firstname">
+                    </div>
+                    <div class="profileItem">
+                        <label for="">Apellido</label>
+                        <input [(ngModel)]="logedUser.name.lastname">
+                    </div>
+                    <div class="profileItem">
+                        <label for="">Telefono</label>
+                        <input [(ngModel)]="logedUser.phone">
+                    </div>
+                    <div class="profileItem">
                         <label for="">Nombre de usuario</label>
                         <input [(ngModel)]="logedUser.username">
                     </div>

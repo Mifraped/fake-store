@@ -5,12 +5,14 @@ import { MaterialModule } from '../material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
+import { ReversePipe } from './pipes/reverse.pipe';
 
 
 @NgModule({
   declarations: [
     LoginFormComponent,
     SnackBarComponent,
+    ReversePipe,
   ],
   imports: [
     CommonModule,
@@ -19,7 +21,8 @@ import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
     HttpClientModule
   ],
   exports: [
-    LoginFormComponent
+    LoginFormComponent,
+    ReversePipe
   ]
 })
 export class SharedModule { }
