@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { JewelryRoutingModule } from './jewelry-routing.module';
 import { JewelryPageComponent } from './jewelry-page/jewelry-page.component';
+import { SharedModule } from '../../shared/shared.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { JewelryPageComponent } from './jewelry-page/jewelry-page.component';
   ],
   imports: [
     CommonModule,
-    JewelryRoutingModule
+    JewelryRoutingModule,
+    SharedModule
   ]
 })
 export class JewelryModule { }

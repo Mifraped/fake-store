@@ -1,0 +1,35 @@
+.contPrinc{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 5%;
+}
+
+.contSec{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+    padding: 5%;
+}
+
+div.h1{
+        width: 60%;
+        padding: 0 5%;
+}
+
+h1{
+    font-size: 2.5rem;
+    color: var(--amarillo);
+}
+
+.contTarg{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 60px;
+    width: 80%;
+}

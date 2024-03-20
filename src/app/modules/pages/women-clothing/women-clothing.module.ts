@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { WomenClothingRoutingModule } from './women-clothing-routing.module';
 import { WomenClothingPageComponent } from './women-clothing-page/women-clothing-page.component';
+import { SharedModule } from '../../shared/shared.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { WomenClothingPageComponent } from './women-clothing-page/women-clothing
   ],
   imports: [
     CommonModule,
-    WomenClothingRoutingModule
+    WomenClothingRoutingModule,
+    SharedModule
   ]
 })
 export class WomenClothingModule { }

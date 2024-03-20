@@ -1,1 +1,10 @@
-<p>women-clothing-page works!</p>
+<div class="contPrinc">
+    <div class="h1">
+        <h1>Ropa Mujer</h1>
+    </div>
+    <div class="contSec">
+        <div class="contTarg">
+            <app-product-card [product]="product" *ngFor="let product of productList"></app-product-card>
+        </div>
+    </div>
+</div>

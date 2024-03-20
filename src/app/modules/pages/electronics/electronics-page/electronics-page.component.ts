@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Subject } from 'rxjs';
 import { Product } from 'src/app/modules/shared/models/product.interface';
 import { ProductsService } from 'src/app/modules/shared/services/products.service';
 

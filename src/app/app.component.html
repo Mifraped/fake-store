@@ -6,11 +6,12 @@
   <span class="example-spacer"></span>
   <div class="bienvenido">
     <span>{{logedUser ? 'Bienvenido!': null}}</span>
-    <a class="user" routerLink="/profile" [ngStyle]="{color: '#5b5b5b', cursor: 'pointer'}">{{logedUser ?
+    <a class="user" routerLink="/profile" [ngStyle]="{color: '#5b5b5b', cursor: 'pointer'}"
+      (click)="sidenav.close()">{{logedUser ?
       logedUser.email: null}}</a>
   </div>
-  <div class="user-links" (click)="loginLogout();sidenav.close()">
-    <div class="login">
+  <div class="user-links" (click)="sidenav.close()">
+    <div class="login" (click)="loginLogout()">
       <span>
         {{token ? "Logout" : "Login"}}
       </span>
