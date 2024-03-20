@@ -7,8 +7,8 @@ import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 import { ProductCardComponent } from '../shared/components/product-card/product-card.component';
 import { ProductTitleMaxPipe } from './pipes/product-title-max.pipe';
-import { CategoryTraductorPipe } from './pipes/category-traductor.pipe';
-import { CategoryRoutingPipe } from './pipes/category-routing.pipe';
+import { CategoryTraductorPipe } from '../shared/pipes/category-traductor.pipe';
+import { CategoryRoutingPipe } from '../shared/pipes/category-routing.pipe';
 
 
 @NgModule({
