@@ -5,7 +5,7 @@ import { MaterialModule } from '../material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
-import { ProductCardComponent } from './components/product-card/product-card.component';
+import { ProductCardComponent } from '../shared/components/product-card/product-card.component';
 import { ProductTitleMaxPipe } from './pipes/product-title-max.pipe';
 
 
