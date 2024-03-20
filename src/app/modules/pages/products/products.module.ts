@@ -4,6 +4,9 @@ import { CommonModule } from '@angular/common';
 import { ProductsRoutingModule } from './products-routing.module';
 import { ProductsPageComponent } from './products-page/products-page.component';
 import { SingleProductPageComponent } from './single-product-page/single-product-page.component';
+import { RouterModule } from '@angular/router';
+import { SharedModule } from '../../shared/shared.module';
+import { MaterialModule } from '../../material/material.module';
 
 
 @NgModule({
@@ -13,7 +16,10 @@ import { SingleProductPageComponent } from './single-product-page/single-product
   ],
   imports: [
     CommonModule,
-    ProductsRoutingModule
+    ProductsRoutingModule,
+    RouterModule,
+    SharedModule,
+    MaterialModule
   ]
 })
 export class ProductsModule { }

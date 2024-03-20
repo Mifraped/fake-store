@@ -1,1 +1,30 @@
-<p>single-product-page works!</p>
+<div class="contPrinc">
+    <div class="separator"></div>
+    <div class="h1">
+        <div class="links">
+            <a routerLink="/home">Home</a>
+            <span> >> </span>
+            <a routerLink="/{{product.category | categoryRouting}}">{{product.category | categoryTraductor}}</a>
+        </div>
+        <br>
+        <h1>{{product.title}}</h1>
+    </div>
+    <div class="contSec">
+        <div class="contTarg">
+            <div class="photo">
+                <img src="{{product.image}}" alt="Photo">
+            </div>
+            <mat-card class="example-card">
+                <mat-card-content>
+                    <p>
+                        {{product.description}}
+                    </p>
+                </mat-card-content>
+                <mat-card-title>{{product.price}}€</mat-card-title>
+                <mat-card-actions>
+                    <button mat-stroked-button class="my-custom-button">Añadir al carrito</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>

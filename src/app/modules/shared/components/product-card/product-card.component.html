@@ -1,4 +1,4 @@
-<mat-card class="example-card">
+<mat-card class="example-card" (click)="goToProduct()">
     <div class="photo">
         <img mat-card-image src="{{product.image}}" alt="Photo">
     </div>
@@ -8,6 +8,6 @@
     </mat-card-content>
     <mat-card-actions>
         <mat-card-title>{{product.price}}€</mat-card-title>
-        <button mat-raised-button>Ver producto</button>
+        <button mat-stroked-button class="my-custom-button" (click)="goToProduct()">Ver producto</button>
     </mat-card-actions>
 </mat-card>

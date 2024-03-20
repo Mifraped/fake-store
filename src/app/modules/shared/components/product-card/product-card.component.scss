@@ -1,11 +1,12 @@
 mat-card{
     width: 250px;
     height: 470px;
-    background-color: var(--grisClaro);
-    padding-top: 15px;
+    background-color: rgb(244, 244, 244);
+    padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    cursor: pointer;
 }
 
 .photo{
@@ -14,6 +15,7 @@ mat-card{
     justify-content: center;
     align-items: center;
     background-color: white;
+    border-radius: 5px;
 }
 
 img{
@@ -31,6 +33,10 @@ mat-card-actions{
     gap: 10px;
     width: 100%;
     height: 79px;
+}
+
+:host ::ng-deep .my-custom-button {
+    background-color: #ecbf0c !important;
 }
 
 
