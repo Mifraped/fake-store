@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 import { Product } from '../models/product.interface';
 
 @Injectable({
@@ -21,7 +21,15 @@ export class ProductsService {
   }
 
   getProduct(productId: number):Observable<Product>{
-    return this._http.get<Product>(`https://fakestoreapi.com/products/${productId}`)
+    return this._http.get<Product>(`https://fakestoreapi.com/products/${productId}`).pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  getProductsInCategory(category: string): Observable<Product[]>{
+    return this._http.get<Product[]>(`https://fakestoreapi.com/products/category/${category}`).pipe(
+      catchError(this.handleError)
+    )
   }
 }
 

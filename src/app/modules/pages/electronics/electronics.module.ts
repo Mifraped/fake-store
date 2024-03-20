@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ElectronicsRoutingModule } from './electronics-routing.module';
 import { ElectronicsPageComponent } from './electronics-page/electronics-page.component';
+import { SharedModule } from '../../shared/shared.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { ElectronicsPageComponent } from './electronics-page/electronics-page.co
   ],
   imports: [
     CommonModule,
-    ElectronicsRoutingModule
+    ElectronicsRoutingModule,
+    SharedModule
   ]
 })
 export class ElectronicsModule { }

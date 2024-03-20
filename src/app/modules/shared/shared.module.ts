@@ -5,14 +5,16 @@ import { MaterialModule } from '../material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
-import { ReversePipe } from './pipes/reverse.pipe';
+import { ProductCardComponent } from './components/product-card/product-card.component';
+import { ProductTitleMaxPipe } from './pipes/product-title-max.pipe';
 
 
 @NgModule({
   declarations: [
     LoginFormComponent,
     SnackBarComponent,
-    ReversePipe,
+    ProductCardComponent,
+    ProductTitleMaxPipe,
   ],
   imports: [
     CommonModule,
@@ -22,7 +24,7 @@ import { ReversePipe } from './pipes/reverse.pipe';
   ],
   exports: [
     LoginFormComponent,
-    ReversePipe
+    ProductCardComponent
   ]
 })
 export class SharedModule { }

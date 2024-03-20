@@ -1,0 +1,34 @@
+mat-card{
+    width: 250px;
+    background-color: var(--grisClaro);
+    padding-top: 15px;
+    position: relative;
+}
+
+.photo{
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+img{
+    max-height: 100%;
+    width: 100%;
+    object-fit: contain;
+
+}
+
+mat-card-actions{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    bottom: 0;
+    width: 100%;
+}
+
+
+
