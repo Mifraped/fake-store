@@ -1,1 +1,73 @@
-<p>home-page works!</p>
+<div class="contPrinc">
+    <div class="separator"></div>
+    <div class="fashionPhotos">
+        <div class="woman">
+            <div class="womanText">
+                <h1>Descubre nuestro<br>catálogo femenino</h1>
+                <a mat-raised-button class="my-custom-button" routerLink="/women-clothing">Ropa Mujer</a>
+            </div>
+        </div>
+        <div class="man">
+            <div class="manText">
+                <h1>Ultimas tendencias en<br>moda masculina</h1>
+                <a mat-raised-button class="my-custom-button" routerLink="/men-clothing">Ropa Hombre</a>
+            </div>
+        </div>
+    </div>
+    <div class="cardClothes">
+        <h1>Moda masculina y femenina</h1>
+        <div class="fashionCardsCont">
+            <app-product-card [product]="product" *ngFor="let product of bestFashionRatedList"></app-product-card>
+        </div>
+    </div>
+    <hr>
+    <div class="services">
+        <div class="service">
+            <div class="serviceIcon">
+                <img src="../../../../../assets/icons/icon_key3.png" alt="Img">
+            </div>
+            <h1>Devoluciones Gratis</h1>
+            <p>Devuelve tus productos de forma gratuita con recogida en tu domicilio, en un punto de entrega o en una de
+                nuestras tiendas.</p>
+        </div>
+        <div class="service">
+            <div class="serviceIcon">
+                <img src="../../../../../assets/icons/icon_key1.svg" alt="Img">
+            </div>
+            <h1>Envío Gratis</h1>
+            <p>Consigue portes gratis si tu pedido es igual o superior a 49€ y envías a España península o Baleares.</p>
+        </div>
+        <div class="service">
+            <div class="serviceIcon">
+                <img src="../../../../../assets/icons/icon_key2.svg" alt="Img">
+            </div>
+            <h1>Recogida Gratis en tiendas</h1>
+            <p>Recoge tu pedido en una de nuestras tiendas y ahórrate los portes.</p>
+        </div>
+    </div>
+    <div class="jewelryPhoto">
+        <div class="jewelryText">
+            <h1>Explora nuestra colección<br>de joyas</h1>
+            <a mat-raised-button class="my-custom-button" routerLink="/jewelry">Joyería</a>
+        </div>
+    </div>
+    <div class="jewelryCards">
+        <h1>Nuestras joyas mas deseadas</h1>
+        <div class="jewelryCardsCont">
+            <app-product-card [product]="product" *ngFor="let product of bestJewelryList"></app-product-card>
+        </div>
+    </div>
+    <div class="electronicsPhoto">
+        <div class="electronicsText">
+            <h1>Dispositivos electrónicos<br>de la máxima calidad</h1>
+            <a mat-raised-button class="my-custom-button" routerLink="/electronics">Electrónica</a>
+        </div>
+    </div>
+    <div class="electronicCards">
+        <h1>Productos electrónicos mejor valorados</h1>
+        <div class="electronicCardsCont">
+            <app-product-card [product]="product" *ngFor="let product of bestelectronicsList"></app-product-card>
+        </div>
+    </div>
+
+</div>

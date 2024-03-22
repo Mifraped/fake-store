@@ -1,0 +1,215 @@
+.contPrinc{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+}
+
+div.separator {
+    position: absolute;
+    top: 0;
+    height: 35px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0);
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: linear-gradient(to bottom, var(--grisClaro) 55%, rgba(255, 255, 255, 0) 100%);
+    }
+}
+
+.fashionPhotos{
+    display: flex;
+    width: 100%;
+}
+
+.woman{
+    width: 50%;
+    background-image: url(../../../../../assets/home-images/woman-6913225_1280.jpg);
+    height: 585px;
+    background-size: cover;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 100px 50px;
+}
+
+.womanText{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.womanText h1{
+    color: white;
+    font-size: 40px;
+    text-align: end;
+    line-height: 1;
+}
+
+.man{
+    width: 50%;
+    background-image: url(../../../../../assets/home-images/CASUAL-web2.png);
+    height: 585px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 100px 50px;
+}
+
+.manText h1{
+    font-size: 40px;
+    line-height: 1;
+}
+
+:host ::ng-deep .my-custom-button {
+    background-color: #ecbf0c !important;
+}
+
+.cardClothes{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+}
+
+.cardClothes h1{
+    font-size: 45px;
+}
+
+.fashionCardsCont{
+    padding: 45px;
+    display: flex;
+    gap: 100px;
+}
+
+hr{
+    width: 80%;
+    color: black;
+}
+
+.services{
+    display: flex;
+    padding: 90px;
+    gap: 100px;
+}
+
+.service{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    text-align: center;
+}
+
+.serviceIcon{
+    width: 50px;
+    height: 50px;
+    margin-bottom: 30px;
+}
+
+.serviceIcon img{
+    width: 100%;
+}
+
+.service h1{
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.service p{
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.electronicsPhoto{
+    height: 700px;
+    width: 100%;
+    background-image: url('../../../../../assets/home-images/pngtree-various-boxes-and-various-electronics-on-the-black-background-picture-image_2714983.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 85%;
+    display: flex;
+}
+
+.electronicsText{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: 100px;
+    margin-left: 700px;
+}
+
+.electronicsText h1{
+    color: white;
+    font-size: 40px;
+    text-align: start;
+    line-height: 1.2;
+}
+
+.electronicCards{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+}
+
+.electronicCards h1{
+    font-size: 45px;
+}
+
+.electronicCardsCont{
+    padding: 45px;
+    display: flex;
+    gap: 100px;
+}
+
+.jewelryPhoto{
+    height: 700px;
+    width: 100%;
+    background-image: url('../../../../../assets/home-images/pngtree-golden-jewelry-display-in-a-dark-background-with-black-lamps-picture-image_2682247.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 85%;
+    display: flex;
+}
+
+.jewelryText{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-left: 1375px;
+    margin-top: 80px;
+}
+
+.jewelryText h1{
+    color: white;
+    font-size: 40px;
+    text-align: start;
+    line-height: 1.2;
+}
+
+.jewelryCards{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+}
+
+.jewelryCards h1{
+    font-size: 45px;
+}
+
+.jewelryCardsCont{
+    padding: 45px;
+    display: flex;
+    gap: 100px;
+}

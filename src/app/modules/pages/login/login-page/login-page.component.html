@@ -1,3 +1,11 @@
 <div class="container">
+    <div class="separator"></div>
+    <div class="h1">
+        <div class="links">
+            <a routerLink="/home">Home</a>
+        </div>
+        <br>
+        <h1>Login</h1>
+    </div>
     <app-login-form [loginFormReset$]="loginFormResetObs$" (formEvent)="sendUser($event)"></app-login-form>
 </div>

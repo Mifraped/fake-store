@@ -8,6 +8,7 @@ import { MaterialModule } from './modules/material/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es'
+import { SharedModule } from './modules/shared/shared.module';
 
 registerLocaleData(localeEs)
 
@@ -21,6 +22,7 @@ registerLocaleData(localeEs)
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
+    SharedModule
   ],
   providers: [
     {

@@ -9,6 +9,7 @@ import { ProductCardComponent } from '../shared/components/product-card/product-
 import { ProductTitleMaxPipe } from './pipes/product-title-max.pipe';
 import { CategoryTraductorPipe } from '../shared/pipes/category-traductor.pipe';
 import { CategoryRoutingPipe } from '../shared/pipes/category-routing.pipe';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { CategoryRoutingPipe } from '../shared/pipes/category-routing.pipe';
     ProductTitleMaxPipe,
     CategoryTraductorPipe,
     CategoryRoutingPipe,
+    FooterComponent,
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,8 @@ import { CategoryRoutingPipe } from '../shared/pipes/category-routing.pipe';
     LoginFormComponent,
     ProductCardComponent,
     CategoryTraductorPipe,
-    CategoryRoutingPipe
+    CategoryRoutingPipe,
+    FooterComponent
   ]
 })
 export class SharedModule { }

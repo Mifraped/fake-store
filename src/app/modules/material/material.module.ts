@@ -12,6 +12,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTableModule} from '@angular/material/table';
+import {MatDividerModule} from '@angular/material/divider';
 
 
 
@@ -30,7 +31,8 @@ import {MatTableModule} from '@angular/material/table';
     MatCardModule,
     MatProgressBarModule,
     MatSnackBarModule,
-    MatTableModule
+    MatTableModule,
+    MatDividerModule
   ],
   exports: [
     MatSidenavModule,
@@ -44,7 +46,8 @@ import {MatTableModule} from '@angular/material/table';
     MatCardModule,
     MatProgressBarModule,
     MatSnackBarModule,
-    MatTableModule
+    MatTableModule,
+    MatDividerModule
   ]
 })
 export class MaterialModule { }
