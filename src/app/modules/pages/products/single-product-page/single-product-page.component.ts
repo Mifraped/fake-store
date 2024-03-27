@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/modules/shared/models/product.interface';
+import { SearchObject } from 'src/app/modules/shared/models/searchObject.interface';
 import { ProductsService } from 'src/app/modules/shared/services/products.service';
 
 @Component({
@@ -9,6 +10,8 @@ import { ProductsService } from 'src/app/modules/shared/services/products.servic
   styleUrls: ['./single-product-page.component.scss']
 })
 export class SingleProductPageComponent {
+
+  historyStateData: SearchObject | undefined
 
   product!: Product
 
@@ -20,8 +23,12 @@ export class SingleProductPageComponent {
     this._productService.getProduct(productId).subscribe({
       next: ((res: Product) => this.product = res),
       error: ((error: any) => console.log(error)),
-      complete: (() => console.log('Proceso terminado' + '\n' + JSON.stringify(this.product)))
+      complete: (() => console.log('Proceso terminado'))
     })
+
+    if(history.state.data){
+      this.historyStateData = history.state.data
+    }
   }
 
 }

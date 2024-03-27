@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../../models/product.interface';
 import { Router } from '@angular/router';
 
@@ -11,10 +11,12 @@ export class ProductCardComponent {
 
   @Input() product!: Product
 
+  @Output() eventoId = new EventEmitter<number>()
+
   constructor(private _router: Router){}
 
   goToProduct(){
-    this._router.navigate([`/products/${this.product.id}`])
+    this.eventoId.emit(this.product.id)
   }
 
 }

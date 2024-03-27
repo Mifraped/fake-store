@@ -1,15 +1,26 @@
 <div class="contPrinc">
-    <div class="separator"></div>
+    <app-separator></app-separator>
     <div class="h1">
         <div class="links">
             <a routerLink="/home">Home</a>
         </div>
         <br>
-        <h1>Joyería</h1>
+        <div class="title">
+            <h1>Joyería</h1>
+            <mat-form-field>
+                <mat-label>Ordenar por:</mat-label>
+                <mat-select [(value)]="selectedValue" (selectionChange)="onSelectedValueChange($event.value)">
+                    <mat-option value="asc">Precio ascendente</mat-option>
+                    <mat-option value="desc">Precio descendente</mat-option>
+                    <mat-option value="rat">Valoración</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
     </div>
     <div class="contSec">
         <div class="contTarg">
-            <app-product-card [product]="product" *ngFor="let product of productList"></app-product-card>
+            <app-product-card (eventoId)="goToProduct($event)" [product]="product"
+                *ngFor="let product of productList"></app-product-card>
         </div>
     </div>
 </div>

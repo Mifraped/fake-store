@@ -7,23 +7,6 @@
     position: relative;
 }
 
-div.separator {
-    position: absolute;
-    top: 0;
-    height: 35px;
-    width: 100%;
-    background: rgba(255, 255, 255, 0);
-    &::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        background: linear-gradient(to bottom, var(--grisClaro) 55%, rgba(255, 255, 255, 0) 100%);
-    }
-}
-
 .fashionPhotos{
     display: flex;
     width: 100%;
@@ -86,6 +69,8 @@ div.separator {
 .fashionCardsCont{
     padding: 45px;
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 100px;
 }
 
@@ -168,6 +153,8 @@ hr{
 .electronicCardsCont{
     padding: 45px;
     display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 100px;
 }
 
@@ -211,5 +198,7 @@ hr{
 .jewelryCardsCont{
     padding: 45px;
     display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 100px;
 }

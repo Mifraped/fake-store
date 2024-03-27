@@ -13,6 +13,10 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTableModule} from '@angular/material/table';
 import {MatDividerModule} from '@angular/material/divider';
+import { MatDialogModule } from '@angular/material/dialog';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSliderModule} from '@angular/material/slider';
+
 
 
 
@@ -32,7 +36,10 @@ import {MatDividerModule} from '@angular/material/divider';
     MatProgressBarModule,
     MatSnackBarModule,
     MatTableModule,
-    MatDividerModule
+    MatDividerModule,
+    MatDialogModule,
+    MatCheckboxModule,
+    MatSliderModule
   ],
   exports: [
     MatSidenavModule,
@@ -47,7 +54,10 @@ import {MatDividerModule} from '@angular/material/divider';
     MatProgressBarModule,
     MatSnackBarModule,
     MatTableModule,
-    MatDividerModule
+    MatDividerModule,
+    MatDialogModule,
+    MatCheckboxModule,
+    MatSliderModule
   ]
 })
 export class MaterialModule { }

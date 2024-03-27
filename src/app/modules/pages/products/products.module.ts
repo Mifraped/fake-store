@@ -7,6 +7,7 @@ import { SingleProductPageComponent } from './single-product-page/single-product
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
 import { MaterialModule } from '../../material/material.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { MaterialModule } from '../../material/material.module';
     ProductsRoutingModule,
     RouterModule,
     SharedModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule
   ]
 })
 export class ProductsModule { }

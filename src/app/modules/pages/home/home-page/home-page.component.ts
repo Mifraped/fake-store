@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, from, switchMap, throwError, map, merge } from 'rxjs';
 import { Product } from 'src/app/modules/shared/models/product.interface';
 import { ProductsService } from 'src/app/modules/shared/services/products.service';
@@ -16,7 +17,7 @@ export class HomePageComponent {
 
   bestJewelryList: Product[] = []
 
-  constructor(private _productService: ProductsService){}
+  constructor(private _productService: ProductsService, private router: Router){}
 
   getBestRatedInCategory(category: string, number: number): Observable<Product[]>{
     return this._productService.getProductsInCategory(category).pipe(
@@ -57,5 +58,9 @@ export class HomePageComponent {
       complete: (() => console.log('Proceso obtencion productos joyeria completado')
       )
     })
+  }
+
+  goToProduct(id: number){
+    this.router.navigate([`/products/${id}`])
   }
 }

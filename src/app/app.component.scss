@@ -6,6 +6,48 @@
     color: black;
     height: 7%;
   }
+
+  .fakeStore{
+    text-decoration: none;
+    color: black;
+  }
+
+  .secondaryToolbar{
+    height: 60%;
+    width: 50%;
+    background-color: #dbb314;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  :host ::ng-deep .my-custom-button {
+    background-color: #dbb314 !important;
+    border-radius: 20px;
+}
+
+.search{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.secondaryToolbar input{
+  height: 75%;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  padding: 0 15px;
+}
+
+.secondaryToolbar span{
+  position: absolute;
+  right: 10px;
+}
+
   .example-container {
     position: absolute;
     top: 7%;

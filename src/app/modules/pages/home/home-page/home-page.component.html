@@ -1,5 +1,4 @@
 <div class="contPrinc">
-    <div class="separator"></div>
     <div class="fashionPhotos">
         <div class="woman">
             <div class="womanText">
@@ -17,7 +16,8 @@
     <div class="cardClothes">
         <h1>Moda masculina y femenina</h1>
         <div class="fashionCardsCont">
-            <app-product-card [product]="product" *ngFor="let product of bestFashionRatedList"></app-product-card>
+            <app-product-card (eventoId)="goToProduct($event)" [product]="product"
+                *ngFor="let product of bestFashionRatedList"></app-product-card>
         </div>
     </div>
     <hr>
@@ -54,7 +54,8 @@
     <div class="jewelryCards">
         <h1>Nuestras joyas mas deseadas</h1>
         <div class="jewelryCardsCont">
-            <app-product-card [product]="product" *ngFor="let product of bestJewelryList"></app-product-card>
+            <app-product-card (eventoId)="goToProduct($event)" [product]="product"
+                *ngFor="let product of bestJewelryList"></app-product-card>
         </div>
     </div>
     <div class="electronicsPhoto">
@@ -66,7 +67,8 @@
     <div class="electronicCards">
         <h1>Productos electrónicos mejor valorados</h1>
         <div class="electronicCardsCont">
-            <app-product-card [product]="product" *ngFor="let product of bestelectronicsList"></app-product-card>
+            <app-product-card (eventoId)="goToProduct($event)" [product]="product"
+                *ngFor="let product of bestelectronicsList"></app-product-card>
         </div>
     </div>
 

@@ -2,8 +2,23 @@
   <button class="menu" aria-label="Example icon-button with menu icon" (click)="sidenav.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
-  <span>Fake Store</span>
+  <a class="fakeStore" routerLink="/home">Fake Store</a>
   <span class="example-spacer"></span>
+
+  <mat-toolbar class="secondaryToolbar">
+    <a mat-flat-button class="my-custom-button" routerLink="/women-clothing">Ropa Mujer</a>
+    <a mat-flat-button class="my-custom-button" routerLink="/men-clothing">Ropa Hombre</a>
+    <a mat-flat-button class="my-custom-button" routerLink="/jewelry">Joyería</a>
+    <a mat-flat-button class="my-custom-button" routerLink="/electronics">Electrónica</a>
+    <div class="search">
+      <input type="text" placeholder="Buscar..." (click)="openDialog()">
+      <span class="material-symbols-outlined">
+        search
+      </span>
+    </div>
+  </mat-toolbar>
+  <span class="example-spacer"></span>
+
   <div class="bienvenido">
     <span>{{logedUser ? 'Bienvenido!': null}}</span>
     <a class="user" routerLink="/profile" [ngStyle]="{color: '#5b5b5b', cursor: 'pointer'}"

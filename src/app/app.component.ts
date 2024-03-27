@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from './modules/shared/services/login.service';
 import { APIUser } from './modules/shared/models/apiUser.interface';
+import { MatDialog } from '@angular/material/dialog';
+import { SearchDialogComponent } from './modules/shared/components/search-dialog/search-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -15,8 +17,17 @@ export class AppComponent {
 
   logedUser: APIUser | null = null
 
-  constructor(private _router: Router, private _loginService: LoginService){
+  constructor(private _router: Router, private _loginService: LoginService, public dialog: MatDialog){
 
+  }
+
+  openDialog(): void {
+    this.dialog.open(SearchDialogComponent, {
+      width: '40%',
+      position: {
+        top: '3.36%',
+      },
+    });
   }
 
   ngOnInit(){
@@ -44,6 +55,7 @@ export class AppComponent {
     }else{
       sessionStorage.removeItem('token')
       sessionStorage.removeItem('logedUser')
+      sessionStorage.removeItem('searchObject')
       this.token = null
       this.logedUser = null
       this._router.navigate(['home'])

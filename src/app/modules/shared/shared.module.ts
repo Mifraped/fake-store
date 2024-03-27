@@ -10,6 +10,9 @@ import { ProductTitleMaxPipe } from './pipes/product-title-max.pipe';
 import { CategoryTraductorPipe } from '../shared/pipes/category-traductor.pipe';
 import { CategoryRoutingPipe } from '../shared/pipes/category-routing.pipe';
 import { FooterComponent } from './components/footer/footer.component';
+import { SeparatorComponent } from './components/separator/separator.component';
+import { SearchDialogComponent } from './components/search-dialog/search-dialog.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -21,19 +24,23 @@ import { FooterComponent } from './components/footer/footer.component';
     CategoryTraductorPipe,
     CategoryRoutingPipe,
     FooterComponent,
+    SeparatorComponent,
+    SearchDialogComponent,
   ],
   imports: [
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   exports: [
     LoginFormComponent,
     ProductCardComponent,
     CategoryTraductorPipe,
     CategoryRoutingPipe,
-    FooterComponent
+    FooterComponent,
+    SeparatorComponent
   ]
 })
 export class SharedModule { }

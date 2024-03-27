@@ -22,7 +22,6 @@ export class ProfilePageComponent {
     if(storageUser){
       this.logedUser = JSON.parse(storageUser)
     }
-    console.log(this.logedUser);
   }
 
   enviarCambios(user: APIUser){

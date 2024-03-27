@@ -1,0 +1,41 @@
+<div class="title">
+    <h1 mat-dialog-title>Buscar Productos</h1>
+    <span class="material-symbols-outlined" mat-dialog-close>
+        close
+    </span>
+</div>
+<div mat-dialog-content>
+    <section class="example-section">
+        <label class="example-margin">Producto:</label>
+        <input type="text" [(ngModel)]="searchObject.productName">
+    </section>
+    <section class="example-section">
+        <label class="example-margin">Categoría:</label>
+        <mat-checkbox class="example-margin" [(ngModel)]="searchObject.womenClothes" color="primary">Ropa
+            Mujer</mat-checkbox>
+        <mat-checkbox class="example-margin" [(ngModel)]="searchObject.menClothes" color="primary">Ropa
+            Hombre</mat-checkbox>
+        <mat-checkbox class="example-margin" [(ngModel)]="searchObject.jewelry" color="primary">Joyería</mat-checkbox>
+        <mat-checkbox class="example-margin" [(ngModel)]="searchObject.electronics"
+            color="primary">Electrónica</mat-checkbox>
+    </section>
+    <section class="example-section">
+        <label class="example-margin">Precio:</label>
+        <mat-slider min="0" max="1000" discrete>
+            <input matSliderStartThumb [(ngModel)]="searchObject.minPrice">
+            <input matSliderEndThumb [(ngModel)]="searchObject.maxPrice">
+        </mat-slider>
+    </section>
+    <section class="example-section rating">
+        <label class="example-margin">Valoración:</label>
+        <mat-slider min="0" max="5" step="0.5" discrete>
+            <input matSliderStartThumb [(ngModel)]="searchObject.minRating">
+            <input matSliderEndThumb [(ngModel)]="searchObject.maxRating">
+        </mat-slider>
+    </section>
+</div>
+<div id="actions" mat-dialog-actions>
+    <button mat-button (click)="clearFilters()">Restaurar filtros</button>
+    <button mat-button mat-dialog-close cdkFocusInitial class="my-custom-button"
+        (click)="goToProducts()">Buscar</button>
+</div>

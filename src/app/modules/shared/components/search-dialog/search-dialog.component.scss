@@ -1,0 +1,53 @@
+.title{
+  position: relative;
+}
+
+.title span{
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  cursor: pointer;
+}
+
+.example-h2 {
+    margin: 10px;
+  }
+  
+  .example-section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+  }
+  
+  .example-margin {
+    margin: 0 10px;
+  }
+
+  input{
+    height: 30px;
+    width: 550px;
+    border-radius: 20px;
+    padding: 0 10px;
+  }
+
+  input:focus{
+    outline: none;
+  }
+
+  mat-slider {
+    width: 500px;
+  }
+
+  .rating mat-slider{
+    width: 200px;
+  }
+
+  #actions{
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  :host ::ng-deep .my-custom-button {
+    background-color: var(--amarillo) !important;
+}

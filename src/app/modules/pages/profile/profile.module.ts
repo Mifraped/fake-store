@@ -5,6 +5,7 @@ import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { MaterialModule } from '../../material/material.module';
 import { FormsModule } from '@angular/forms';
+import { SharedModule } from '../../shared/shared.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     ProfileRoutingModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ]
 })
 export class ProfileModule { }

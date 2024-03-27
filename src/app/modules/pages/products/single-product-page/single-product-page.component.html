@@ -1,16 +1,25 @@
 <div class="contPrinc">
-    <div class="separator"></div>
-    <div class="h1">
-        <div class="links">
+    <app-separator></app-separator>
+    <div class="h1" *ngIf="product">
+        <ng-container class="links" *ngIf="!historyStateData; else Data">
             <a routerLink="/home">Home</a>
-            <span> >> </span>
+            <span> || </span>
             <a routerLink="/{{product.category | categoryRouting}}">{{product.category | categoryTraductor}}</a>
-        </div>
+        </ng-container>
+        <ng-template #Data class="Links">
+            <a routerLink="/home">Home</a>
+            <span> || </span>
+            <a routerLink="/products" [queryParams]="{productName: historyStateData?.productName, womenClothes: historyStateData?.womenClothes,
+            menClothes: historyStateData?.menClothes, jewelry: historyStateData?.jewelry, electronics: historyStateData?.electronics,
+            minPrice: historyStateData?.minPrice, maxPrice: historyStateData?.maxPrice, minRating: historyStateData?.minRating,
+            maxRating: historyStateData?.maxRating}">
+                Volver a la búsqueda</a>
+        </ng-template>
         <br>
         <h1>{{product.title}}</h1>
     </div>
     <div class="contSec">
-        <div class="contTarg">
+        <div class="contTarg" *ngIf="product">
             <div class="photo">
                 <img src="{{product.image}}" alt="Photo">
             </div>

@@ -31,5 +31,11 @@ export class ProductsService {
       catchError(this.handleError)
     )
   }
+
+  getAllProducts():Observable<Product[]>{
+    return this._http.get<Product[]>('https://fakestoreapi.com/products').pipe(
+      catchError(this.handleError)
+    )
+  }
 }
 
