@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
 import { MaterialModule } from '../../material/material.module';
 import { FormsModule } from '@angular/forms';
+import { StarRatingModule } from 'angular-star-rating';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { FormsModule } from '@angular/forms';
     RouterModule,
     SharedModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    StarRatingModule.forRoot()
   ]
 })
 export class ProductsModule { }

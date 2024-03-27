@@ -9,14 +9,14 @@ export class ProductTitleMaxPipe implements PipeTransform {
 
     let count: number = 0
 
-    for(let i = 50; i > 0; i--){
+    for(let i = 45; i > 0; i--){
       if(value.charAt(i) === ' ')
       break
       count ++
     }
 
-    if(value.length >= 50){
-      return `${value.slice(0,50 - count)} ...`;
+    if(value.length >= 45){
+      return `${value.slice(0,45 - count)} ...`;
     }else{
       return value
     }

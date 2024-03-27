@@ -13,6 +13,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { SeparatorComponent } from './components/separator/separator.component';
 import { SearchDialogComponent } from './components/search-dialog/search-dialog.component';
 import { FormsModule } from '@angular/forms';
+import { StarRatingModule } from 'angular-star-rating';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { FormsModule } from '@angular/forms';
     MaterialModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    StarRatingModule.forRoot()
   ],
   exports: [
     LoginFormComponent,

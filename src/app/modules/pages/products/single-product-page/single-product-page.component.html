@@ -1,20 +1,20 @@
 <div class="contPrinc">
     <app-separator></app-separator>
     <div class="h1" *ngIf="product">
-        <ng-container class="links" *ngIf="!historyStateData; else Data">
+        <div class="links" *ngIf="!historyStateData">
             <a routerLink="/home">Home</a>
             <span> || </span>
             <a routerLink="/{{product.category | categoryRouting}}">{{product.category | categoryTraductor}}</a>
-        </ng-container>
-        <ng-template #Data class="Links">
+        </div>
+        <div *ngIf="historyStateData" class="Links">
             <a routerLink="/home">Home</a>
             <span> || </span>
-            <a routerLink="/products" [queryParams]="{productName: historyStateData?.productName, womenClothes: historyStateData?.womenClothes,
-            menClothes: historyStateData?.menClothes, jewelry: historyStateData?.jewelry, electronics: historyStateData?.electronics,
-            minPrice: historyStateData?.minPrice, maxPrice: historyStateData?.maxPrice, minRating: historyStateData?.minRating,
-            maxRating: historyStateData?.maxRating}">
+            <a routerLink="/products" [queryParams]="{productName: historyStateData.productName, womenClothes: historyStateData.womenClothes,
+            menClothes: historyStateData.menClothes, jewelry: historyStateData.jewelry, electronics: historyStateData.electronics,
+            minPrice: historyStateData.minPrice, maxPrice: historyStateData.maxPrice, minRating: historyStateData.minRating,
+            maxRating: historyStateData.maxRating}">
                 Volver a la búsqueda</a>
-        </ng-template>
+        </div>
         <br>
         <h1>{{product.title}}</h1>
     </div>
@@ -29,6 +29,11 @@
                         {{product.description}}
                     </p>
                 </mat-card-content>
+                <div class="ratings">
+                    <star-rating [starType]="'svg'" [rating]="redondeo(product.rating.rate)" [showHalfStars]="true"
+                        [readOnly]="true" staticColor="ok"></star-rating>
+                    <p>({{product.rating.count}} opiniones)</p>
+                </div>
                 <mat-card-title>{{product.price}}€</mat-card-title>
                 <mat-card-actions>
                     <button mat-stroked-button class="my-custom-button">Añadir al carrito</button>

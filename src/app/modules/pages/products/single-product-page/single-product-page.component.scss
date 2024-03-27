@@ -12,7 +12,7 @@
     align-items: center;
     gap: 40px;
     width: 100%;
-    padding: 1% 5%;
+    padding: 1% 5% 5%;
 }
 
 app-separator{
@@ -31,6 +31,9 @@ div.h1{
 
 h1{
     font-size: 2.5rem;
+        height: 78px;
+    display: flex;
+    align-items: center;
 }
 
 a, span{
@@ -73,6 +76,11 @@ mat-card{
     justify-content: center;
     align-items: center;
     gap: 20px;
+}
+
+.ratings{
+    display: flex;
+    justify-content: center;
 }
 
 mat-card-actions{

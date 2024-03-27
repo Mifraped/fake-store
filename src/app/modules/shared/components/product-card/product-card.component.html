@@ -5,6 +5,8 @@
     <mat-card-content>
         <br>
         <p>{{product.title | productTitleMax}}</p>
+        <star-rating [starType]="'svg'" [rating]="redondeo(product.rating.rate)" [showHalfStars]="true"
+            [readOnly]="true" staticColor="ok"></star-rating>
     </mat-card-content>
     <mat-card-actions>
         <mat-card-title>{{product.price}}€</mat-card-title>

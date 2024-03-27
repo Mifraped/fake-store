@@ -31,4 +31,14 @@ export class SingleProductPageComponent {
     }
   }
 
+  redondeo(num: number) {
+    let parteEntera = Math.floor(num);
+    let parteDecimal = num - parteEntera;
+    if (parteDecimal > 0.5) {
+      return Math.ceil(num);
+    } else {
+      return Math.floor(num);
+    }
+  }
+
 }
