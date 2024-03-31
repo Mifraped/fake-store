@@ -12,7 +12,7 @@
             <a routerLink="/products" [queryParams]="{productName: historyStateData.productName, womenClothes: historyStateData.womenClothes,
             menClothes: historyStateData.menClothes, jewelry: historyStateData.jewelry, electronics: historyStateData.electronics,
             minPrice: historyStateData.minPrice, maxPrice: historyStateData.maxPrice, minRating: historyStateData.minRating,
-            maxRating: historyStateData.maxRating}">
+            maxRating: historyStateData.maxRating}" [state]="{orderData: orderData}">
                 Volver a la búsqueda</a>
         </div>
         <br>

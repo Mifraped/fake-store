@@ -1,0 +1,89 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+app-separator{
+    position: absolute;
+    top: 0;
+    height: 35px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0);
+}
+
+div.h1{
+    width: 60%;
+    padding: 0 5%;
+    margin-top: 40px;
+}
+
+h1{
+font-size: 2.5rem;
+}
+
+a{
+text-decoration: none;
+font-size: 1.2rem;
+color: #0066A6;
+}
+
+.contTarg{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: 50%;
+    padding: 2% 0 5%;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+}
+
+mat-card{
+    background-color: rgb(244, 244, 244);
+    width: 100%;
+}
+
+.groupName, .groupAddress, .groupUserData{
+    display: flex;
+    justify-content: space-evenly;
+    gap: 50px;
+    padding: 30px;
+}
+
+.groupMapCont{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.groupAddress{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    width: 49%;
+}
+
+#map{
+    width: 49%;
+    height: 300px;
+}
+
+mat-card-actions{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 30px;
+}
+
+.groupAddress mat-form-field{
+    width: 100%;
+}
+
+

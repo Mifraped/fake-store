@@ -67,11 +67,17 @@ export class ProductsPageComponent {
           next: ((product: Product) => this.findedProducts.push(product)),
           error: ((error: any) => console.log(`Ha habido un error: ${error}`)),
           complete: (() => {
+            if(history.state.orderData){
+              this.selectedValue = history.state.orderData
+              this.onSelectedValueChange(history.state.orderData)
+            }
             console.log(`Lista filtrada completada`)
           })
         })
       }
     })
+
+
   }
 
   ngOnDestroy(){
@@ -91,7 +97,8 @@ export class ProductsPageComponent {
   goToProduct(id: number){
     let navigationExtras: NavigationExtras = {
       state: {
-        data: this.queryParams
+        data: this.queryParams,
+        orderData: this.selectedValue
       }
     }
     this.router.navigate([`/products/${id}`], navigationExtras)

@@ -13,6 +13,8 @@ export class SingleProductPageComponent {
 
   historyStateData: SearchObject | undefined
 
+  orderData: string | undefined
+
   product!: Product
 
   constructor(private _activatedRoute: ActivatedRoute, private _productService: ProductsService){}
@@ -28,6 +30,9 @@ export class SingleProductPageComponent {
 
     if(history.state.data){
       this.historyStateData = history.state.data
+    }
+    if(history.state.orderData){
+      this.orderData = history.state.orderData
     }
   }
 

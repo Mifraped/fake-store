@@ -1,0 +1,115 @@
+<div class="container">
+    <app-separator></app-separator>
+    <div class="h1">
+        <div class="links">
+            <a routerLink="/home">Home</a>
+        </div>
+        <br>
+        <h1>Registro</h1>
+    </div>
+    <div class="contTarg">
+        <form [formGroup]="userForm" (submit)="sendForm()">
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <mat-card-title>Datos Personales</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div formGroupName="name" class="groupName">
+                        <mat-form-field>
+                            <mat-label>Nombre</mat-label>
+                            <input matInput formControlName="firstname">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Apellido</mat-label>
+                            <input matInput formControlName="lastname">
+                        </mat-form-field>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <mat-card-title>Dirección</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="groupMapCont">
+                        <div formGroupName="address" class="groupAddress">
+                            <mat-form-field>
+                                <mat-label>Calle</mat-label>
+                                <input matInput formControlName="street" id="streetAutocomplete" type="text">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label>Número</mat-label>
+                                <input matInput formControlName="number" id="numberAutocomplete" type="text">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label>Código postal</mat-label>
+                                <input matInput formControlName="zipcode" id="zipcodeAutocomplete" type="text">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label>Localidad</mat-label>
+                                <input matInput formControlName="city" id="cityAutocomplete" type="text">
+                            </mat-form-field>
+                        </div>
+                        <div id="map"></div>
+                    </div>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-raised-button color="primary" type="button" (click)="setLocation()"
+                        id="addressButton">Guardar direccion
+                        y ver en el
+                        mapa</button>
+                </mat-card-actions>
+            </mat-card>
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <mat-card-title>Datos de usuario</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div>
+                        <div class="groupUserData">
+                            <mat-form-field>
+                                <mat-label>Nombre de usuario</mat-label>
+                                <input matInput formControlName="username">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label>Email *</mat-label>
+                                <input matInput formControlName="email" type="email">
+                                <mat-hint [ngStyle]="{color: 'red'}" *ngIf="userForm.get('email')?.errors?.['email']">
+                                    Introduce una direccion valida
+                                </mat-hint>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label>Teléfono</mat-label>
+                                <input matInput formControlName="phone">
+                            </mat-form-field>
+                        </div>
+                        <div class="groupUserData">
+                            <mat-form-field>
+                                <mat-label>Contraseña *</mat-label>
+                                <input matInput formControlName="password" type="password">
+                                <mat-hint [ngStyle]="{color: 'red'}"
+                                    *ngIf="userForm.get('password')?.errors?.['pattern']">
+                                    8 dígitos con mayúscula, minúscula y
+                                    número
+                                </mat-hint>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label>Repetir contraseña</mat-label>
+                                <input matInput formControlName="passwordCheck" type="password">
+                                <mat-hint [ngStyle]="{color: 'red'}"
+                                    *ngIf="userForm.get('passwordCheck')?.errors?.['mustMatch']">
+                                    La contraseña no coincide
+                                </mat-hint>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </mat-card-content>
+                <section class="example-section">
+                    <mat-progress-bar class="example-margin" [mode]="barMode">
+                    </mat-progress-bar>
+                </section>
+            </mat-card>
+            <button mat-raised-button color="primary" type="submit" [disabled]="userForm.invalid">Enviar datos</button>
+        </form>
+    </div>
+</div>

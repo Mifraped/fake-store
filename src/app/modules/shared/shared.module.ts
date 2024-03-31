@@ -14,6 +14,7 @@ import { SeparatorComponent } from './components/separator/separator.component';
 import { SearchDialogComponent } from './components/search-dialog/search-dialog.component';
 import { FormsModule } from '@angular/forms';
 import { StarRatingModule } from 'angular-star-rating';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { StarRatingModule } from 'angular-star-rating';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    StarRatingModule.forRoot()
+    StarRatingModule.forRoot(),
+    RouterModule
   ],
   exports: [
     LoginFormComponent,

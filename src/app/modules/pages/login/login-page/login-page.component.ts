@@ -2,10 +2,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Token } from '../../../shared/models/token.interface';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from 'src/app/modules/shared/models/user.interface';
+import { LoginUser } from 'src/app/modules/shared/models/loginUser.interface';
 import { LoginService } from 'src/app/modules/shared/services/login.service';
 import { Subject, Subscription, switchMap, throwError } from 'rxjs';
 import { APIUser } from 'src/app/modules/shared/models/apiUser.interface';
+import { SnackBarService } from 'src/app/modules/shared/services/snack-bar.service';
+import { UserService } from 'src/app/modules/shared/services/user.service';
 
 @Component({
   selector: 'app-login-page',
@@ -16,13 +18,13 @@ export class LoginPageComponent {
 
   private _loginFormReset = new Subject<boolean>
 
-  loginFormResetObs$ = this._loginFormReset.asObservable()
-
-  durationSnackBar = 4;
-
   private loginSubscription!: Subscription
 
-  constructor(private _loginService: LoginService, private _router: Router, private _snackBar: MatSnackBar){}
+  newUser: APIUser | undefined
+
+  loginFormResetObs$ = this._loginFormReset.asObservable()
+
+  constructor(private _loginService: LoginService, private _userService: UserService, private _router: Router, private snackBarService: SnackBarService){}
 
   ngOnInit(){
 
@@ -31,14 +33,20 @@ export class LoginPageComponent {
     if(token){
       this._router.navigate(['home'])
     }
+
+    let newUser = sessionStorage.getItem('newUser')
+
+    if(newUser){
+      this.newUser = JSON.parse(newUser)
+    }
   }
 
-  sendUser(loginUser: User){
+  sendUser(loginUser: LoginUser){
     this.loginSubscription = this._loginService.login(loginUser).pipe(
       switchMap((res: Token) => {
         if(res.token){
           sessionStorage.setItem('token', res.token)
-          return this._loginService.getUser(loginUser)
+          return this._userService.getUser(loginUser)
         }else{
           return throwError(() =>new Error('No token'))
         }
@@ -51,18 +59,33 @@ export class LoginPageComponent {
       }),
       error: ((error: any) => {
         console.error(`Algo salio mal: ${error}`)
-        this.openSnackBar(error)
+        this.snackBarService.openSnackBar(error)
         this._loginFormReset.next(true)
       }),
       complete: () => console.info('Proceso de Login completado')
     })
   }
-  
-  openSnackBar(message: string) {
-    this._snackBar.open(message, undefined, {
-      duration: this.durationSnackBar * 1000,
-      verticalPosition: 'top'
-    })
+
+  loginNewUser(loginUser: LoginUser){
+    if(loginUser.username === this.newUser?.username && loginUser.password === this.newUser?.password){
+      sessionStorage.setItem('token', 'abgtq4t43tertry6576e5uydu6u65')
+    }
+  }
+
+  login(loginUser: LoginUser){
+    if(this.newUser){
+      this.loginNewUser(loginUser)
+      let token = sessionStorage.getItem('token')
+      if(token){
+        sessionStorage.setItem('logedUser', JSON.stringify(this.newUser))
+        this._loginService.updateLoginStatus()
+        this._router.navigate(['home'])
+      }else{
+        this.sendUser(loginUser)
+      }
+    }else{
+      this.sendUser(loginUser)
+    }
   }
 
   ngOnDestroy(){

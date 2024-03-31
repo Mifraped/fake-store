@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import {  Observable, Subject, catchError, map, throwError } from 'rxjs';
-import { User } from 'src/app/modules/shared/models/user.interface';
+import { LoginUser } from 'src/app/modules/shared/models/loginUser.interface';
 import { APIUser } from 'src/app/modules/shared/models/apiUser.interface';
 import { Token } from '../models/token.interface';
 
@@ -26,7 +26,7 @@ export class LoginService {
     return throwError(() => new Error(error.error))
   }
 
-  public login(user: User): Observable<Token>{
+  public login(user: LoginUser): Observable<Token>{
     return this._http.post<Token>("https://fakestoreapi.com/auth/login", user).pipe(
       catchError(this.handleError)
     )
@@ -36,18 +36,4 @@ export class LoginService {
     this._loginStatus.next(true)
   }
 
-  getUser(loginUser: User): Observable<APIUser> {
-    return this._http.get<APIUser[]>("https://fakestoreapi.com/users").pipe(
-      map((users: APIUser[]) => {
-        const foundUser = users.find((userInUsers: APIUser) => 
-          userInUsers.username === loginUser.username && userInUsers.password === loginUser.password
-        );
-        if (!foundUser) {
-          throw new Error('User not found');
-        }
-        return foundUser;
-      }),
-      catchError(error => throwError(() => error))
-    );
-  }
 }

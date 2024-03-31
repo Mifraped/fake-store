@@ -16,6 +16,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSliderModule} from '@angular/material/slider';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
 
@@ -39,7 +40,8 @@ import {MatSliderModule} from '@angular/material/slider';
     MatDividerModule,
     MatDialogModule,
     MatCheckboxModule,
-    MatSliderModule
+    MatSliderModule,
+    MatAutocompleteModule
   ],
   exports: [
     MatSidenavModule,
@@ -57,7 +59,8 @@ import {MatSliderModule} from '@angular/material/slider';
     MatDividerModule,
     MatDialogModule,
     MatCheckboxModule,
-    MatSliderModule
+    MatSliderModule,
+    MatAutocompleteModule
   ]
 })
 export class MaterialModule { }
