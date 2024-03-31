@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ProgressBarMode } from '@angular/material/progress-bar';
 import { Observable, Subscription } from 'rxjs';
-import { User } from 'src/app/modules/shared/models/user.interface';
+import { LoginUser } from 'src/app/modules/shared/models/loginUser.interface';
 
 @Component({
   selector: 'app-login-form',
@@ -11,7 +11,7 @@ import { User } from 'src/app/modules/shared/models/user.interface';
 })
 export class LoginFormComponent {
 
-  @Output() formEvent = new EventEmitter<User>()
+  @Output() formEvent = new EventEmitter<LoginUser>()
 
   @Input() loginFormReset$!: Observable<boolean>
 
@@ -43,7 +43,7 @@ export class LoginFormComponent {
   }
 
   submitForm(){
-    let loginUser: User = this.loginForm.value
+    let loginUser: LoginUser = this.loginForm.value
     this.formEvent.emit(loginUser)
     this.progressBarMode = "indeterminate"
   }

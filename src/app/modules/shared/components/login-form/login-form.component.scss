@@ -1,12 +1,7 @@
-// div.container{
-//   height: 400px;
-//   width: 350px;
-//   background-color: rgb(235, 190, 13);
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   border-radius: 5px;
-// }
+mat-card{
+  gap:20px
+}
+
 .formCont {
     display: flex;
     flex-direction: column;
@@ -14,11 +9,11 @@
   }
 
   .example-card {
-    max-width: 400px;
+    width: 800px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    background-color: var(--grisClaro);
+    background-color: rgb(244, 244, 244);
   }
 
   mat-card-header{
@@ -28,6 +23,19 @@
     height: 80px;
   }
 
+  mat-card-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  a{
+    cursor: pointer;
+    text-decoration: none;
+    color: #0066A6;
+  }
+
   mat-card-actions{
     display: flex;
     justify-content: center;
@@ -35,6 +43,10 @@
     height: 80px;
   }
 
+  mat-divider{
+    width: 100%;
+  }
+
   mat-form-field{
-    width: 250px;
+    width: 400px;
   }
