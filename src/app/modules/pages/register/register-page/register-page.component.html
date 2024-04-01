@@ -54,8 +54,8 @@
                     </div>
                 </mat-card-content>
                 <mat-card-actions>
-                    <button mat-raised-button color="primary" type="button" (click)="setLocation()"
-                        id="addressButton">Guardar direccion
+                    <button mat-raised-button color="primary" type="button" (click)="setLocation()" id="addressButton"
+                        [disabled]="userForm.get('address')?.invalid">Guardar direccion
                         y ver en el
                         mapa</button>
                 </mat-card-actions>
@@ -85,8 +85,12 @@
                         </div>
                         <div class="groupUserData">
                             <mat-form-field>
-                                <mat-label>Contraseña *</mat-label>
-                                <input matInput formControlName="password" type="password">
+                                <mat-label>Contraseña</mat-label>
+                                <input matInput formControlName="password" [type]="hidePassword ? 'password' : 'text'">
+                                <button mat-icon-button type="button" matSuffix (click)="hidePassword = !hidePassword"
+                                    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+                                    <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                </button>
                                 <mat-hint [ngStyle]="{color: 'red'}"
                                     *ngIf="userForm.get('password')?.errors?.['pattern']">
                                     8 dígitos con mayúscula, minúscula y
@@ -94,8 +98,14 @@
                                 </mat-hint>
                             </mat-form-field>
                             <mat-form-field>
-                                <mat-label>Repetir contraseña</mat-label>
-                                <input matInput formControlName="passwordCheck" type="password">
+                                <mat-label>Repetir contraseña *</mat-label>
+                                <input matInput formControlName="passwordCheck"
+                                    [type]="hidePasswordCheck ? 'password' : 'text'">
+                                <button mat-icon-button type="button" matSuffix
+                                    (click)="hidePasswordCheck = !hidePasswordCheck" [attr.aria-label]="'Hide password'"
+                                    [attr.aria-pressed]="hidePasswordCheck">
+                                    <mat-icon>{{hidePasswordCheck ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                </button>
                                 <mat-hint [ngStyle]="{color: 'red'}"
                                     *ngIf="userForm.get('passwordCheck')?.errors?.['mustMatch']">
                                     La contraseña no coincide

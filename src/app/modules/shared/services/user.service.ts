@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { APIUser } from '../models/apiUser.interface';
-import { Observable, catchError, map, throwError } from 'rxjs';
+import { Observable, catchError, map, retry, throwError } from 'rxjs';
 import { Cart } from '../models/cart.interface';
 import { LoginUser } from '../models/loginUser.interface';
 import { AddUser } from '../models/addUser.interface';
@@ -33,24 +33,28 @@ export class UserService {
         }
         return foundUser;
       }),
+      retry(3),
       catchError(error => throwError(() => error))
     );
   }
 
   addUser(user: AddUser): Observable<APIUser>{
     return this._http.post<APIUser>('https://fakestoreapi.com/users',user).pipe(
+      retry(3),
       catchError(this.handleError)
     )
   }
 
   updateUser(user: APIUser): Observable<APIUser>{
     return this._http.put<APIUser>('https://fakestoreapi.com/users/' + user.id, user).pipe(
-    catchError(this.handleError)
+      retry(3),
+      catchError(this.handleError)
     )
   }
 
   getCartUser(user: APIUser): Observable<Cart[]>{
     return this._http.get<Cart[]>('https://fakestoreapi.com/carts/user/' + user.id).pipe(
+      retry(3),
       catchError(this.handleError)
     )
   }

@@ -8,65 +8,123 @@
         <h1>Mi Perfil</h1>
     </div>
     <div class="contTarg">
-        <mat-card class="example-card">
-            <mat-card-header>
-                <mat-card-title>Datos de Usuario:</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <mat-list role="list">
-                    <div class="profileItem">
-                        <label for="">Nombre</label>
-                        <input [(ngModel)]="logedUser.name.firstname">
+        <form [formGroup]="userForm">
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <mat-card-title>Datos de Usuario:</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div formGroupName="name" class="groupName">
+                        <mat-form-field>
+                            <mat-label>Nombre</mat-label>
+                            <input matInput formControlName="firstname">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Apellido</mat-label>
+                            <input matInput formControlName="lastname">
+                        </mat-form-field>
                     </div>
-                    <div class="profileItem">
-                        <label for="">Apellido</label>
-                        <input [(ngModel)]="logedUser.name.lastname">
+                    <div>
+                        <div class="groupUserData">
+                            <mat-form-field>
+                                <mat-label>Nombre de usuario</mat-label>
+                                <input matInput formControlName="username">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label>Email *</mat-label>
+                                <input matInput formControlName="email" type="email">
+                                <mat-hint [ngStyle]="{color: 'red'}" *ngIf="userForm.get('email')?.errors?.['email']">
+                                    Introduce una direccion valida
+                                </mat-hint>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label>Teléfono</mat-label>
+                                <input matInput formControlName="phone">
+                            </mat-form-field>
+                        </div>
+                        <div class="groupUserData">
+                            <mat-form-field>
+                                <mat-label>Contraseña</mat-label>
+                                <input matInput formControlName="password" [type]="hidePassword ? 'password' : 'text'">
+                                <button mat-icon-button type="button" matSuffix (click)="hidePassword = !hidePassword"
+                                    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+                                    <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                </button>
+                                <mat-hint [ngStyle]="{color: 'red'}"
+                                    *ngIf="userForm.get('password')?.errors?.['pattern']">
+                                    8 dígitos con mayúscula, minúscula y
+                                    número
+                                </mat-hint>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label>Repetir contraseña *</mat-label>
+                                <input matInput formControlName="passwordCheck"
+                                    [type]="hidePasswordCheck ? 'password' : 'text'">
+                                <button mat-icon-button type="button" matSuffix
+                                    (click)="hidePasswordCheck = !hidePasswordCheck" [attr.aria-label]="'Hide password'"
+                                    [attr.aria-pressed]="hidePasswordCheck">
+                                    <mat-icon>{{hidePasswordCheck ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                </button>
+                                <mat-hint [ngStyle]="{color: 'red'}"
+                                    *ngIf="userForm.get('passwordCheck')?.errors?.['mustMatch']">
+                                    La contraseña no coincide
+                                </mat-hint>
+                            </mat-form-field>
+                        </div>
                     </div>
-                    <div class="profileItem">
-                        <label for="">Telefono</label>
-                        <input [(ngModel)]="logedUser.phone">
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-raised-button color="primary" type="button" (click)="restoreUserData()">Restaurar
+                        datos</button>
+                    <button mat-raised-button color="warn" type="button" id="userDataButton"
+                        (click)="updateUserData(logedUser)"
+                        [disabled]="userForm.get('email')?.invalid || userForm.get('username')?.invalid || userForm.get('password')?.invalid || userForm.get('passwordCheck')?.invalid || userForm.get('name')?.invalid">Modificarar
+                        datos</button>
+                </mat-card-actions>
+                <section class="example-section">
+                    <mat-progress-bar class="example-margin" [mode]="dataUserBarMode">
+                    </mat-progress-bar>
+                </section>
+            </mat-card>
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <mat-card-title>Dirección:</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="groupMapCont">
+                        <div formGroupName="address" class="groupAddress">
+                            <mat-form-field>
+                                <mat-label>Calle</mat-label>
+                                <input matInput formControlName="street" id="streetAutocomplete" type="text">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label>Número</mat-label>
+                                <input matInput formControlName="number" type="text">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label>Código postal</mat-label>
+                                <input matInput formControlName="zipcode" id="zipcodeAutocomplete" type="text">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label>Localidad</mat-label>
+                                <input matInput formControlName="city" id="cityAutocomplete" type="text">
+                            </mat-form-field>
+                        </div>
+                        <div id="map"></div>
                     </div>
-                    <div class="profileItem">
-                        <label for="">Nombre de usuario</label>
-                        <input [(ngModel)]="logedUser.username">
-                    </div>
-                    <div class="profileItem">
-                        <label for="">Correo Electrónico</label>
-                        <input [(ngModel)]="logedUser.email">
-                    </div>
-                    <div class="profileItem">
-                        <label for="">Password</label>
-                        <input type="password" [(ngModel)]="logedUser.password">
-                    </div>
-                </mat-list>
-                <button mat-raised-button color="primary" (click)="enviarCambios(logedUser)">Guardar</button>
-            </mat-card-content>
-        </mat-card>
-        <mat-card class="example-card">
-            <mat-card-header>
-                <mat-card-title>Direccion:</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <mat-list role="list">
-                    <div class="profileItem">
-                        <label for="">Calle</label>
-                        <input [(ngModel)]="logedUser.address.street">
-                    </div>
-                    <div class="profileItem">
-                        <label for="">Numero</label>
-                        <input [(ngModel)]="logedUser.address.number">
-                    </div>
-                    <div class="profileItem">
-                        <label for="">Codigo postal</label>
-                        <input [(ngModel)]="logedUser.address.zipcode">
-                    </div>
-                    <div class="profileItem">
-                        <label for="">Ciudad</label>
-                        <input [(ngModel)]="logedUser.address.city">
-                    </div>
-                </mat-list>
-                <button mat-raised-button color="primary" (click)="enviarCambios(logedUser)">Guardar</button>
-            </mat-card-content>
-        </mat-card>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-raised-button color="primary" type="button" (click)="restoreAddress()">Restaurar
+                        dirección</button>
+                    <button mat-raised-button color="warn" type="button" id="addressButton"
+                        (click)="updateAddress(logedUser)" [disabled]="userForm.get('address')?.invalid">Modificarar
+                        dirección</button>
+                </mat-card-actions>
+                <section class="example-section">
+                    <mat-progress-bar class="example-margin" [mode]="addressBarMode">
+                    </mat-progress-bar>
+                </section>
+            </mat-card>
+        </form>
     </div>
 </div>

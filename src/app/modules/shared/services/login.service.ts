@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import {  Observable, Subject, catchError, map, throwError } from 'rxjs';
+import {  Observable, Subject, catchError, map, retry, throwError } from 'rxjs';
 import { LoginUser } from 'src/app/modules/shared/models/loginUser.interface';
 import { APIUser } from 'src/app/modules/shared/models/apiUser.interface';
 import { Token } from '../models/token.interface';
@@ -28,6 +28,7 @@ export class LoginService {
 
   public login(user: LoginUser): Observable<Token>{
     return this._http.post<Token>("https://fakestoreapi.com/auth/login", user).pipe(
+      retry(3),
       catchError(this.handleError)
     )
   }

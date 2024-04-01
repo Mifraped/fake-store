@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { ProgressBarMode } from '@angular/material/progress-bar';
 import { Router } from '@angular/router';
 import { AddUser } from 'src/app/modules/shared/models/addUser.interface';
@@ -20,6 +20,10 @@ export class RegisterPageComponent {
     
   barMode: ProgressBarMode = 'determinate';
 
+  hidePassword = true
+
+  hidePasswordCheck = true
+
   constructor(private formBuilder: FormBuilder,
     private mapService: MapsService,
     private snackBarService: SnackBarService,
@@ -31,7 +35,7 @@ export class RegisterPageComponent {
 
     const geolocation = this.formBuilder.group({
       lat: '',
-      lng: ''
+      long: ''
     })
 
     const address = this.formBuilder.group({
@@ -51,12 +55,10 @@ export class RegisterPageComponent {
       address: address,
       email: ['', Validators.compose([Validators.required, Validators.email])],
       username: ['', Validators.required],
-      password: ['', Validators.compose([Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/)])],
-      passwordCheck: ['', Validators.required],
+      password: ['', Validators.required],
+      passwordCheck: ['', Validators.compose([Validators.required, this.mustMatch])],
       name: name,
       phone: ['', Validators.required]
-    }, {
-      validator: this.MustMatch('password', 'passwordCheck')
     })
 
     this.mapService.initStreetAutocomplete()
@@ -67,21 +69,13 @@ export class RegisterPageComponent {
 
   }
 
-  MustMatch(controlName: string, matchingControlName: string) {
-    return (formGroup: FormGroup) => {
-      const control = formGroup.controls[controlName];
-      const matchingControl = formGroup.controls[matchingControlName];
-  
-      if (matchingControl.errors && !matchingControl.errors['mustMatch']) {
-        return;
-      }
-  
-      if (control.value !== matchingControl.value) {
-        matchingControl.setErrors({ mustMatch: true });
-      } else {
-        matchingControl.setErrors(null);
-      }
+  mustMatch(control: AbstractControl): ValidationErrors | null {
+
+    if(control.parent?.value.password === control.value){
+      return  null
     }
+
+    return {mustMatch: true}
   }
 
   sendForm(){
@@ -102,7 +96,7 @@ export class RegisterPageComponent {
     })
   }
 
-  setLocation(){
+  async setLocation(){
     let address = this.mapService.selectedAddress
     let addressUserForm = this.userForm.get('address')?.value 
     for(let key in address){
@@ -110,7 +104,7 @@ export class RegisterPageComponent {
         address[key] = addressUserForm[key]
       }
     }    
-    this.mapService.geocoder.geocode(
+    await this.mapService.geocoder.geocode(
       {'address': 
       `${address.street}, ${address.number}, ${address.zipcode},${address.city}`
     },
@@ -120,7 +114,7 @@ export class RegisterPageComponent {
           let lng = results[0].geometry.location.lng()
           this.mapService.initMap(15, lat, lng)
           this.userForm.get('address')?.patchValue(address)
-          this.userForm.get('address')?.get('geolocation')?.patchValue({lat: String(lat), lng: String(lng)})
+          this.userForm.get('address')?.get('geolocation')?.patchValue({lat: String(lat), long: String(lng)})
         }else{
           this.mapService.initMap(5)
           this.snackBarService.openSnackBar('La direccion proporcionada no es válida')

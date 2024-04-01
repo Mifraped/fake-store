@@ -6,6 +6,7 @@ import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { MaterialModule } from '../../material/material.module';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { SharedModule } from '../../shared/shared.module';
     ProfileRoutingModule,
     MaterialModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ]
 })
 export class ProfileModule { }
