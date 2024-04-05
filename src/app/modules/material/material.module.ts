@@ -17,6 +17,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatChipsModule} from '@angular/material/chips';
 
 
 
@@ -41,7 +44,10 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatDialogModule,
     MatCheckboxModule,
     MatSliderModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatMenuModule,
+    MatBadgeModule,
+    MatChipsModule
   ],
   exports: [
     MatSidenavModule,
@@ -60,7 +66,10 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatDialogModule,
     MatCheckboxModule,
     MatSliderModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatMenuModule,
+    MatBadgeModule,
+    MatChipsModule
   ]
 })
 export class MaterialModule { }

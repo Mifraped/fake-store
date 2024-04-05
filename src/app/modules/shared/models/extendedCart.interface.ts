@@ -10,4 +10,5 @@ export interface ExtendedProductCart extends ProductCart{
     price: number;
     category: string;
     totalPrice: number
+    image: string
 }

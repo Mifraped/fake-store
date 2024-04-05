@@ -6,8 +6,19 @@
 </div>
 <div mat-dialog-content>
     <section class="example-section">
-        <label class="example-margin">Producto:</label>
-        <input type="text" [(ngModel)]="searchObject.productName">
+        <mat-form-field class="search">
+            <mat-label>Buscar</mat-label>
+            <mat-chip-grid #chipGrid aria-label="searches">
+                <mat-chip-row *ngFor="let search of searchs" (removed)="remove(search)" (click)="setInputValue(search)">
+                    {{search}}
+                    <button matChipRemove [attr.aria-label]="'remove ' + search">
+                        <mat-icon>cancel</mat-icon>
+                    </button>
+                </mat-chip-row>
+            </mat-chip-grid>
+            <input #searchInput [(ngModel)]="searchObject.productName" [matChipInputFor]="chipGrid"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes" />
+        </mat-form-field>
     </section>
     <section class="example-section">
         <label class="example-margin">Categoría:</label>
@@ -35,7 +46,7 @@
     </section>
 </div>
 <div id="actions" mat-dialog-actions>
-    <button mat-button (click)="clearFilters()">Restaurar filtros</button>
+    <button mat-raised-button (click)="clearFilters()">Restaurar filtros</button>
     <button mat-button mat-dialog-close cdkFocusInitial class="my-custom-button"
-        (click)="goToProducts()">Buscar</button>
+        (click)="goToProducts(); add(searchInput.value)">Buscar</button>
 </div>

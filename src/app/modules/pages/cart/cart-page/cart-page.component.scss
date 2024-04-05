@@ -26,7 +26,7 @@ font-size: 2.5rem;
 
 a{
 text-decoration: none;
-font-size: 1.2rem;
+font-size: 15px;
 color: #0066A6;
 }
 
@@ -62,10 +62,23 @@ a.photoProduct{
     height: 80px;
 }
 
-a.product{
-    text-decoration: none;
-    color: #0066A6;
-    font-size: 15px;
+.delete{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.deleteIcon{
+    font-size: 20px;
+}
+
+.numArt{
+    width: 40px;
+    text-align: center;
+}
+
+.numArt:focus{
+    outline: none;
 }
 
 div.button{
@@ -84,4 +97,11 @@ div.button{
       background-color: white;
       color: rgba(0, 0, 0, 0.87);
     }
-  }
+
+}
+
+.buttons{
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+}

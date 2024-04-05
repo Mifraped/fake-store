@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { SearchObject } from '../../models/searchObject.interface';
 import { NavigationExtras, Router } from '@angular/router';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+
 
 @Component({
   selector: 'app-search-dialog',
@@ -9,6 +11,11 @@ import { NavigationExtras, Router } from '@angular/router';
   styleUrls: ['./search-dialog.component.scss']
 })
 export class SearchDialogComponent {
+
+  @ViewChild('searchInput') searchInput!: ElementRef;
+
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  searchs: string[] = []
 
   searchObject: SearchObject = {
   productName: undefined,
@@ -38,20 +45,28 @@ export class SearchDialogComponent {
         minRating: this.searchObject.minRating,
         maxRating: this.searchObject.maxRating
       }
-    }
+    }    
 
+    this.searchObject.productName = ''
     sessionStorage.setItem('searchObject', JSON.stringify(this.searchObject))
     
     this.router.navigate(['/products'], navigationExtras)
+
   }
 
   constructor(public dialogRef: MatDialogRef<SearchDialogComponent>, private router: Router) {}
 
   ngOnInit(){
+    
     let searchObject = sessionStorage.getItem('searchObject')
+    let searchs = sessionStorage.getItem('searchs')
 
     if(searchObject){
       this.searchObject = JSON.parse(searchObject)
+    }
+
+    if(searchs && searchs.length > 0){
+      this.searchs = JSON.parse(searchs)
     }
   }
 
@@ -72,6 +87,30 @@ export class SearchDialogComponent {
       maxRating: 5
       }
 
+  }
+
+  add(value: string): void {      
+    if (value && !this.searchs.includes(value)) {
+      this.searchs.push(value);
+      sessionStorage.setItem('searchs', JSON.stringify(this.searchs))
+    }
+    }
+
+  remove(search: string): void {
+    const index = this.searchs.indexOf(search);
+  
+    if (index >= 0) {
+      this.searchs.splice(index, 1);
+    }
+    if(this.searchs.length > 0){
+      sessionStorage.setItem('searchs', JSON.stringify(this.searchs))
+    }else{
+      sessionStorage.removeItem('searchs')
+    }
+  }
+
+  setInputValue(value: string){
+    this.searchObject.productName = value
   }
 
 }

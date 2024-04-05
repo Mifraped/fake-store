@@ -5,30 +5,34 @@
             <a routerLink="/home">Home</a>
         </div>
         <br>
-        <h1>Mis Pedidos</h1>
+        <h1>Mi carrito de la compra</h1>
     </div>
     <div class="contTarg">
-        <mat-card class="example-card" *ngFor="let cart of EXTENDED_CART; let index = index">
-            <mat-card-header>
-                <mat-card-title>Pedido {{EXTENDED_CART.length - index}}</mat-card-title>
-                <mat-card-subtitle>
-                    Fecha: {{cart.date | date: 'longDate'}} a las {{cart.date | date: 'shortTime'}}
-                </mat-card-subtitle>
-            </mat-card-header>
-            <br>
+        <mat-card class="example-card">
             <mat-card-content>
-                <table *ngIf="dataSource" mat-table [dataSource]="dataSource[index]" class="mat-elevation-z8">
+                <table *ngIf="dataSource" mat-table [dataSource]="dataSource.products" class="mat-elevation-z8">
                     <ng-container matColumnDef="image">
                         <th mat-header-cell class="headerCell" *matHeaderCellDef> Producto </th>
                         <td mat-cell class="photoCell" *matCellDef="let element"><a class="photoProduct"
-                                [routerLink]="['/products', element.id]"><img src="{{element.image}}" alt="Img"></a>
+                                [routerLink]="['/products', element.productId]"><img src="{{element.image}}"
+                                    alt="Img"></a>
                         </td>
                     </ng-container>
                     <ng-container matColumnDef="title">
                         <th mat-header-cell *matHeaderCellDef> </th>
-                        <td mat-cell *matCellDef="let element"><a class="product"
-                                [routerLink]="['/products', element.id]">
-                                {{element.title}} </a></td>
+                        <td mat-cell *matCellDef="let element">
+                            <a class="product" [routerLink]="['/products', element.productId]">
+                                {{element.title}}
+                            </a>
+                            <br>
+                            <br>
+                            <div class="delete" (click)="deleteProduct(element.productId)">
+                                <span class="material-symbols-outlined deleteIcon">
+                                    delete
+                                </span>
+                                <span>Eliminar</span>
+                            </div>
+                        </td>
                     </ng-container>
                     <ng-container matColumnDef="category">
                         <th mat-header-cell *matHeaderCellDef> Categoria </th>
@@ -40,22 +44,31 @@
                     </ng-container>
                     <ng-container matColumnDef="quantity">
                         <th mat-header-cell *matHeaderCellDef> Cantidad </th>
-                        <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+                        <td mat-cell *matCellDef="let element">
+                            <input class="numArt" type="number" [(ngModel)]="element.quantity"
+                                (change)="updateCart(element.productId, element.quantity)">
+                        </td>
                     </ng-container>
                     <ng-container matColumnDef="totalPrice">
                         <th mat-header-cell *matHeaderCellDef> Precio </th>
-                        <td mat-cell *matCellDef="let element"> {{element.totalPrice}}€ </td>
+                        <td mat-cell *matCellDef="let element"> {{element.totalPrice | number: '1.2-2'}}€ </td>
                     </ng-container>
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                 </table>
                 <br>
                 <div class="button">
-                    <button mat-raised-button class="mat-table-styled-button">Total pedido:
-                        {{EXTENDED_CART[EXTENDED_CART.length - 1 -index].totalPriceCart}}</button>
+                    <button mat-raised-button class="mat-table-styled-button">
+                        Total pedido: {{dataSource?.totalPriceCart | number: '1.2-2'}}
+                    </button>
                 </div>
                 <br>
             </mat-card-content>
         </mat-card>
+        <div class="buttons">
+            <button mat-raised-button color="basic" routerLink="/home">Continuar comprando</button>
+            <button mat-raised-button color="primary">Tramitar pedido</button>
+        </div>
+
     </div>
 </div>

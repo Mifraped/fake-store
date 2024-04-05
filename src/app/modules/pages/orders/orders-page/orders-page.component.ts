@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { from, mergeMap, switchMap, throwError } from 'rxjs';
 import { Cart, ProductCart } from 'src/app/modules/shared/models/cart.interface';
 import { ProductsService } from 'src/app/modules/shared/services/products.service';
-import { UserService } from 'src/app/modules/shared/services/user.service';
 import { Product } from 'src/app/modules/shared/models/product.interface';
 import { ExtendedCart } from 'src/app/modules/shared/models/extendedCart.interface';
+import { CartServiceService } from 'src/app/modules/shared/services/cart-service.service';
 
 
 @Component({
@@ -17,7 +17,7 @@ export class OrdersPageComponent {
   cartUserList: Cart[] = []
   cartProductstList: Product[] = []
   EXTENDED_CART: ExtendedCart[] = []
-  displayedColumns: string[] = ['title', 'category', 'price', 'quantity', 'totalPrice'];
+  displayedColumns: string[] = ['image', 'title', 'category', 'price', 'quantity', 'totalPrice'];
   dataSource: any[] = []
   
   extendCart(){
@@ -27,6 +27,8 @@ export class OrdersPageComponent {
         if (!findedProduct) {
           return {
             ...product,
+            id: 0,
+            image: '',
             title: 'Unknown',
             price: 0,
             category: 'Unknown',
@@ -35,6 +37,8 @@ export class OrdersPageComponent {
         }
         return {
           ...product,
+          id: findedProduct?.id,
+          image: findedProduct?.image,
           title: findedProduct?.title,
           price: findedProduct?.price,
           category: findedProduct?.category,
@@ -52,14 +56,14 @@ export class OrdersPageComponent {
     })
   }
 
-  constructor(private _userService: UserService, private _productService: ProductsService){}  
+  constructor(private cartService: CartServiceService, private _productService: ProductsService){}  
 
   ngOnInit(){
     let storedUser = sessionStorage.getItem('logedUser')
     if(storedUser){
       
       let parsedUser = JSON.parse(storedUser)
-      this._userService.getCartUser(parsedUser).pipe(
+      this.cartService.getCartUser(parsedUser).pipe(
         switchMap((res: Cart[]) => {
           if(res){
             this.cartUserList = res;

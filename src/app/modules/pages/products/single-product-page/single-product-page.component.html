@@ -36,7 +36,8 @@
                 </div>
                 <mat-card-title>{{product.price}}€</mat-card-title>
                 <mat-card-actions>
-                    <button mat-stroked-button class="my-custom-button">Añadir al carrito</button>
+                    <button mat-stroked-button class="my-custom-button" (click)="addToCart(product)">Añadir al
+                        carrito</button>
                 </mat-card-actions>
             </mat-card>
         </div>

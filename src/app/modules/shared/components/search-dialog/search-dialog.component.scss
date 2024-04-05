@@ -15,24 +15,17 @@
   
   .example-section {
     display: flex;
-    align-content: center;
+    justify-content: flex-start;
     align-items: center;
-    height: 60px;
+    min-height: 60px;
   }
   
   .example-margin {
     margin: 0 10px;
   }
 
-  input{
-    height: 30px;
-    width: 550px;
-    border-radius: 20px;
-    padding: 0 10px;
-  }
-
-  input:focus{
-    outline: none;
+  .search{
+    width: 100%;
   }
 
   mat-slider {

@@ -4,6 +4,8 @@ import { LoginService } from './modules/shared/services/login.service';
 import { APIUser } from './modules/shared/models/apiUser.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { SearchDialogComponent } from './modules/shared/components/search-dialog/search-dialog.component';
+import { CartServiceService } from './modules/shared/services/cart-service.service';
+import { Product } from './modules/shared/models/product.interface';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +19,14 @@ export class AppComponent {
 
   logedUser: APIUser | null = null
 
-  constructor(private _router: Router, private _loginService: LoginService, public dialog: MatDialog){
+  cartLength: number = 0
+
+  constructor(
+    private _router: Router,
+    private _loginService: LoginService,
+    public dialog: MatDialog,
+    private cartService: CartServiceService
+    ){
 
   }
 
@@ -45,6 +54,15 @@ export class AppComponent {
           this.logedUser = storedUser ? JSON.parse(storedUser) : null;    
         }
       })
+    })
+
+    this.cartService.cart$.subscribe({
+      next: ((res: Product[]) => {
+        this.cartLength = res.length
+      }),
+      error: ((error: any) => console.log(error)),
+      complete: (() => console.log('Obtencion tamaño de cesta terminado')
+      )
     })
 
   }

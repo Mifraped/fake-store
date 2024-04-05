@@ -7,9 +7,27 @@
     height: 7%;
   }
 
+  .fakeStore-icon{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+  }
+
   .fakeStore{
     text-decoration: none;
     color: black;
+  }
+
+  .fake-icon{
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  img{
+    width: 100%;
   }
 
   .secondaryToolbar{
@@ -57,7 +75,8 @@
     background: #eee;
     height: 93%;
   }
-  .custom-icon-button, .menu{
+
+  .custom-icon-button{
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -73,6 +92,20 @@
   }
 
   .menu{
+    display: none;
+    //de none tiene que pasar al de abajo, y .example-spacer left pasar a none
+    // display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border: none;
+    padding: 0;
+    background: none;
+    box-shadow: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 50%;
     width: 48px;
     height: 48px;
   }
@@ -92,6 +125,18 @@
     display: flex;
   }
 
+  .user{
+    background-color: #FFCC00;
+    border: none;
+    font-size: 20px;
+    font-weight: 600;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
   div.login, div.shoping-cart{
     display: flex;
     justify-content: center;
@@ -108,4 +153,8 @@
 
   mat-sidenav-content{
     background-color: white;
+  }
+
+  mat-sidenav{
+    display: none;
   }

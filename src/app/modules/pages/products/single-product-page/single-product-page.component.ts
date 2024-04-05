@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/modules/shared/models/product.interface';
 import { SearchObject } from 'src/app/modules/shared/models/searchObject.interface';
+import { CartServiceService } from 'src/app/modules/shared/services/cart-service.service';
 import { ProductsService } from 'src/app/modules/shared/services/products.service';
 
 @Component({
@@ -17,7 +18,11 @@ export class SingleProductPageComponent {
 
   product!: Product
 
-  constructor(private _activatedRoute: ActivatedRoute, private _productService: ProductsService){}
+  constructor(
+    private _activatedRoute: ActivatedRoute,
+    private _productService: ProductsService,
+    private cartService: CartServiceService
+    ){}
 
   ngOnInit(){
     let productId = this._activatedRoute.snapshot.params['productId']
@@ -44,6 +49,10 @@ export class SingleProductPageComponent {
     } else {
       return Math.floor(num);
     }
+  }
+
+  addToCart(product: Product){
+    this.cartService.addToCart(product)
   }
 
 }

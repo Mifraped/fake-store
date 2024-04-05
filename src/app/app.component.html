@@ -2,7 +2,13 @@
   <button class="menu" aria-label="Example icon-button with menu icon" (click)="sidenav.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
-  <a class="fakeStore" routerLink="/home">Fake Store</a>
+  <span class="example-spacer left"></span>
+  <div class="fakeStore-icon" routerLink="/home">
+    <div class="fake-icon">
+      <img src="../assets/icons/181591.png" alt="img">
+    </div>
+    <a class="fakeStore">Fake Store</a>
+  </div>
   <span class="example-spacer"></span>
 
   <mat-toolbar class="secondaryToolbar">
@@ -11,7 +17,7 @@
     <a mat-flat-button class="my-custom-button" routerLink="/jewelry">Joyería</a>
     <a mat-flat-button class="my-custom-button" routerLink="/electronics">Electrónica</a>
     <div class="search">
-      <input type="text" placeholder="Buscar..." (click)="openDialog()">
+      <input type="text" placeholder="Buscar..." (click)="openDialog()" readonly>
       <span class="material-symbols-outlined">
         search
       </span>
@@ -21,10 +27,16 @@
 
   <div class="bienvenido">
     <span>{{logedUser ? 'Bienvenido!': null}}</span>
-    <a class="user" routerLink="/profile" [ngStyle]="{color: '#5b5b5b', cursor: 'pointer'}"
-      (click)="sidenav.close()">{{logedUser ?
-      logedUser.email: null}}</a>
+    <button class="user" (click)="sidenav.close()" [matMenuTriggerFor]="afterMenu">
+      {{logedUser ? logedUser.username: null}}<span class="material-symbols-outlined" *ngIf="logedUser">
+        arrow_drop_down
+      </span></button>
+    <mat-menu #afterMenu="matMenu" class="userMenu" #userMenu="matMenu" xPosition="after">
+      <button mat-menu-item routerLink="/profile">Mi Perfil</button>
+      <button mat-menu-item routerLink="/orders">Mis Pedidos</button>
+    </mat-menu>
   </div>
+  <span class="example-spacer"></span>
   <div class="user-links" (click)="sidenav.close()">
     <div class="login" (click)="loginLogout()">
       <span>
@@ -36,12 +48,13 @@
         </span>
       </button>
     </div>
-    <div class="shoping-cart">
+    <div class="shoping-cart" routerLink="/cart">
       <span>
         Mi carrito
       </span>
       <button class="custom-icon-button" aria-label="Example icon-button with share icon">
-        <span class="material-symbols-outlined">
+        <span class="material-symbols-outlined" [matBadge]="cartLength" [matBadgeHidden]="cartLength < 1"
+          matBadgeColor="warn">
           shopping_cart
         </span>
       </button>

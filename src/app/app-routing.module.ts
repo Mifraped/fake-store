@@ -46,6 +46,10 @@ const routes: Routes = [
     loadChildren: () => import('./modules/pages/register/register.module').then(m => m.RegisterModule)
   },
   {
+    path: 'cart',
+    loadChildren: () => import('./modules/pages/cart/cart.module').then(m => m.CartModule)
+  },
+  {
     path: '**',
     redirectTo: '',
     pathMatch: 'full'

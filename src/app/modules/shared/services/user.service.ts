@@ -52,10 +52,4 @@ export class UserService {
     )
   }
 
-  getCartUser(user: APIUser): Observable<Cart[]>{
-    return this._http.get<Cart[]>('https://fakestoreapi.com/carts/user/' + user.id).pipe(
-      retry(3),
-      catchError(this.handleError)
-    )
-  }
 }
