@@ -66,8 +66,8 @@
             </mat-card-content>
         </mat-card>
         <div class="buttons">
-            <button mat-raised-button color="basic" routerLink="/home">Continuar comprando</button>
-            <button mat-raised-button color="primary">Tramitar pedido</button>
+            <button mat-raised-button color="basic" (click)="goBack()">Continuar comprando</button>
+            <button mat-raised-button color="primary" (click)="goPayment()">Tramitar pedido</button>
         </div>
 
     </div>

@@ -1,6 +1,6 @@
 <mat-card class="example-card">
     <mat-card-header>
-        <mat-card-title>Iniciar Sesion</mat-card-title>
+        <mat-card-title>{{cart ? 'Inicia sesion para realizar el pago' : 'Iniciar Sesion'}}</mat-card-title>
     </mat-card-header>
     <mat-card-content>
         <form [formGroup]="loginForm" class="formCont">
@@ -31,7 +31,7 @@
             </div>
 
         </form>
-        <span>¿No tienes una cuenta? <a routerLink="/register">¡Regístrate!</a></span>
+        <span>¿No tienes una cuenta? <a (click)="goToRegister()">¡Regístrate!</a></span>
         <mat-divider></mat-divider>
     </mat-card-content>
     <mat-card-actions>

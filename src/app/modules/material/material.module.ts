@@ -20,6 +20,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatRadioModule} from '@angular/material/radio';
 
 
 
@@ -47,7 +49,9 @@ import {MatChipsModule} from '@angular/material/chips';
     MatAutocompleteModule,
     MatMenuModule,
     MatBadgeModule,
-    MatChipsModule
+    MatChipsModule,
+    MatStepperModule,
+    MatRadioModule
   ],
   exports: [
     MatSidenavModule,
@@ -69,7 +73,9 @@ import {MatChipsModule} from '@angular/material/chips';
     MatAutocompleteModule,
     MatMenuModule,
     MatBadgeModule,
-    MatChipsModule
+    MatChipsModule,
+    MatStepperModule,
+    MatRadioModule
   ]
 })
 export class MaterialModule { }

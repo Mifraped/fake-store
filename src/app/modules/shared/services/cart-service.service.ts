@@ -61,6 +61,12 @@ export class CartServiceService {
     }
   }
 
+  deleteCart(){
+    let currentCart = this.cart.getValue()
+    currentCart.splice(0, currentCart.length)
+    this.cart.next(currentCart)
+  }
+
   getCartUser(user: APIUser): Observable<Cart[]>{
     return this._http.get<Cart[]>('https://fakestoreapi.com/carts/user/' + user.id).pipe(
       retry(3),

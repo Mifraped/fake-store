@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { ExtendedCart, ExtendedProductCart } from 'src/app/modules/shared/models/extendedCart.interface';
 import { Product } from 'src/app/modules/shared/models/product.interface';
 import { CartServiceService } from 'src/app/modules/shared/services/cart-service.service';
+import { Location } from '@angular/common';
+import { NavigationExtras, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-cart-page',
@@ -14,7 +17,7 @@ export class CartPageComponent {
   productList: Product[] = []
   dataSource: ExtendedCart | undefined
 
-  constructor(private cartService: CartServiceService){}
+  constructor(private cartService: CartServiceService, private location: Location, private router: Router){}
 
   ngOnInit(){
     this.cartService.cart$.subscribe({
@@ -66,6 +69,24 @@ export class CartPageComponent {
 
   updateCart(productId: number, quantity: number){
     this.cartService.updateCart(productId, quantity)
+  }
+
+  goBack(){
+    this.location.back()
+  }
+
+  goPayment(){
+    let storedUser = sessionStorage.getItem('logedUser')
+    let navigationExtras: NavigationExtras = {
+      state: {
+        cart: this.dataSource
+      }
+    }
+    if(storedUser){
+      this.router.navigate(['/payment'], navigationExtras)
+    }else{
+      this.router.navigate(['/login'], navigationExtras)
+    }
   }
 
 }

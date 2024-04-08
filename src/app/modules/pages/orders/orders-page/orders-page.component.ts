@@ -19,6 +19,7 @@ export class OrdersPageComponent {
   EXTENDED_CART: ExtendedCart[] = []
   displayedColumns: string[] = ['image', 'title', 'category', 'price', 'quantity', 'totalPrice'];
   dataSource: any[] = []
+  storageNewCart: ExtendedCart | undefined
   
   extendCart(){
     this.EXTENDED_CART = this.cartUserList.map((cart) => {
@@ -59,6 +60,11 @@ export class OrdersPageComponent {
   constructor(private cartService: CartServiceService, private _productService: ProductsService){}  
 
   ngOnInit(){
+    let storageNewCart = sessionStorage.getItem('newCart')
+    if(storageNewCart){
+      this.storageNewCart = JSON.parse(storageNewCart)
+    }
+
     let storedUser = sessionStorage.getItem('logedUser')
     if(storedUser){
       
@@ -67,6 +73,9 @@ export class OrdersPageComponent {
         switchMap((res: Cart[]) => {
           if(res){
             this.cartUserList = res;
+            if(this.storageNewCart){
+              this.cartUserList.unshift(this.storageNewCart)
+            }
             return from(res);
           } else {
             return throwError(() => 'No se pudo obtener la lista de pedidos');
@@ -84,7 +93,10 @@ export class OrdersPageComponent {
         complete: (() => {
           console.log('Proceso obtencion de pedidos finalizado')
           this.extendCart()
-          this.EXTENDED_CART.forEach((cart) => this.dataSource.unshift(cart.products))
+          this.EXTENDED_CART.forEach((cart) => this.dataSource.push(cart.products))
+          if(this.storageNewCart){
+            this.dataSource.push(this.storageNewCart.products)
+          }
         })
       })
     }

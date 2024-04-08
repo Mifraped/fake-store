@@ -50,6 +50,10 @@ const routes: Routes = [
     loadChildren: () => import('./modules/pages/cart/cart.module').then(m => m.CartModule)
   },
   {
+    path: 'payment',
+    loadChildren: () => import('./modules/pages/payment/payment.module').then(m => m.PaymentModule)
+  },
+  {
     path: '**',
     redirectTo: '',
     pathMatch: 'full'

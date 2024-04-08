@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ProgressBarMode } from '@angular/material/progress-bar';
 import { Observable, Subscription } from 'rxjs';
 import { LoginUser } from 'src/app/modules/shared/models/loginUser.interface';
+import { ExtendedCart } from '../../models/extendedCart.interface';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -15,6 +17,8 @@ export class LoginFormComponent {
 
   @Input() loginFormReset$!: Observable<boolean>
 
+  @Input() cart: ExtendedCart | undefined
+
   resetSubscription!: Subscription
 
   progressBarMode: ProgressBarMode = "determinate"
@@ -23,7 +27,7 @@ export class LoginFormComponent {
 
   loginForm: FormGroup = new FormGroup({})
 
-  constructor(private _formBuilder: FormBuilder){
+  constructor(private _formBuilder: FormBuilder, private router: Router){
 
   }
 
@@ -51,6 +55,15 @@ export class LoginFormComponent {
   ngOnDestroy(){
     if(this.resetSubscription){
       this.resetSubscription.unsubscribe()
+    }
+  }
+
+  goToRegister(){
+    if(this.cart){
+      let navigationExtras: NavigationExtras = {state: {cart: this.cart}}
+      this.router.navigate(['/register'], navigationExtras)
+    }else{
+      this.router.navigate(['/register'])
     }
   }
 

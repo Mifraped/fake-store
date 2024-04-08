@@ -8,6 +8,7 @@ import { Subject, Subscription, switchMap, throwError } from 'rxjs';
 import { APIUser } from 'src/app/modules/shared/models/apiUser.interface';
 import { SnackBarService } from 'src/app/modules/shared/services/snack-bar.service';
 import { UserService } from 'src/app/modules/shared/services/user.service';
+import { ExtendedCart } from 'src/app/modules/shared/models/extendedCart.interface';
 
 @Component({
   selector: 'app-login-page',
@@ -24,6 +25,8 @@ export class LoginPageComponent {
 
   loginFormResetObs$ = this._loginFormReset.asObservable()
 
+  cart: ExtendedCart | undefined
+
   constructor(private _loginService: LoginService, private _userService: UserService, private _router: Router, private snackBarService: SnackBarService){}
 
   ngOnInit(){
@@ -38,6 +41,10 @@ export class LoginPageComponent {
 
     if(newUser){
       this.newUser = JSON.parse(newUser)
+    }
+
+    if(history.state.cart){
+      this.cart = history.state.cart
     }
   }
 
@@ -55,7 +62,11 @@ export class LoginPageComponent {
       next: ((res: APIUser) => {
         sessionStorage.setItem('logedUser', JSON.stringify(res))
         this._loginService.updateLoginStatus()
-        this._router.navigate(['home'])
+        if(this.cart){
+          this._router.navigate(['/payment'], {state: {cart: this.cart}})
+        }else{
+          this._router.navigate(['home'])
+        }
       }),
       error: ((error: any) => {
         console.error(`Algo salio mal: ${error}`)
@@ -79,8 +90,11 @@ export class LoginPageComponent {
       if(token){
         sessionStorage.setItem('logedUser', JSON.stringify(this.newUser))
         this._loginService.updateLoginStatus()
-        this._router.navigate(['home'])
-      }else{
+        if(this.cart){
+          this._router.navigate(['/payment'], {state: {cart: this.cart}})
+        }else{
+          this._router.navigate(['home'])
+        }      }else{
         this.sendUser(loginUser)
       }
     }else{

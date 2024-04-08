@@ -4,6 +4,7 @@ import { ProgressBarMode } from '@angular/material/progress-bar';
 import { Router } from '@angular/router';
 import { AddUser } from 'src/app/modules/shared/models/addUser.interface';
 import { APIUser } from 'src/app/modules/shared/models/apiUser.interface';
+import { ExtendedCart } from 'src/app/modules/shared/models/extendedCart.interface';
 import { MapsService } from 'src/app/modules/shared/services/maps.service';
 import { SnackBarService } from 'src/app/modules/shared/services/snack-bar.service';
 import { UserService } from 'src/app/modules/shared/services/user.service';
@@ -24,6 +25,8 @@ export class RegisterPageComponent {
 
   hidePasswordCheck = true
 
+  cart: ExtendedCart | undefined
+
   constructor(private formBuilder: FormBuilder,
     private mapService: MapsService,
     private snackBarService: SnackBarService,
@@ -32,6 +35,10 @@ export class RegisterPageComponent {
     ){}
 
   ngOnInit(){
+
+    if(history.state.cart){
+      this.cart = history.state.cart
+    }
 
     const geolocation = this.formBuilder.group({
       lat: '',
@@ -87,7 +94,11 @@ export class RegisterPageComponent {
       next:((res: APIUser) => {
         if(res){
           sessionStorage.setItem('newUser', JSON.stringify(addUser))
-          this.router.navigate(['/login'])
+          if(this.cart){
+            this.router.navigate(['/login'], {state: {cart: this.cart}})
+          }else{
+            this.router.navigate(['/login'])
+          }
           this.snackBarService.openSnackBar('Usuario creado correctamente')
         }
       }),
